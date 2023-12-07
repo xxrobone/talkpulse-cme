@@ -6,9 +6,9 @@ function App() {
 
   return (
     <>
-      <div>
-      <h2>Clean project for talkpulse project</h2>
-      </div>
+     <h1 className="text-3xl font-bold underline">
+      Hello world!
+    </h1>
     </>
   )
 }
