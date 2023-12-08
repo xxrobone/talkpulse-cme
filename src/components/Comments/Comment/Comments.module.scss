@@ -9,6 +9,11 @@ $borderRadius: 8px;
   margin-bottom: 20px;
   padding: 15px;
 
+  &:hover {
+    transform: translateY(-1px);
+    filter: drop-shadow(2px 2px rgba(0,0,0,.225));
+  }
+
   header {
     display: flex;
     justify-content: space-between;
@@ -34,8 +39,24 @@ $borderRadius: 8px;
     display: flex;
     align-items: center;
 
+    :nth-child(1),
+    :nth-child(3) {
+    &:hover {
+        cursor: pointer;
+    }
+    }
+
     span {
         margin: 0 0.5rem;
+    }
+
+    .reply {
+        font-family: monospace;
+
+        &:hover {
+            color: #121212;
+            cursor: pointer;
+        }
     }
   }
 }

@@ -1,5 +1,23 @@
+import { useState } from 'react';
+
+import {
+  PiArrowFatLineUpFill,
+  PiArrowFatLineDownDuotone,
+} from 'react-icons/pi';
+import { HiOutlineChatBubbleLeftRight } from 'react-icons/hi2';
+
+import Reply from '../Reply';
 import styles from './Comments.module.scss';
-import { PiArrowFatLineUpFill, PiArrowFatLineDownDuotone } from "react-icons/pi";
+
+type ReplyTypes = {
+  reply: string;
+  username: string;
+  date: string;
+  upvote: number;
+  downvote: number;
+  id: string;
+  parentCommentId: string;
+};
 
 type CommentTypes = {
   username: string;
@@ -7,6 +25,7 @@ type CommentTypes = {
   date: string;
   upvote: number;
   downvote: number;
+  replies?: ReplyTypes[] | undefined;
 };
 
 const Comment = ({
@@ -15,7 +34,13 @@ const Comment = ({
   date,
   upvote,
   downvote,
+  replies,
 }: CommentTypes) => {
+  const [showReplies, setShowReplies] = useState(false);
+
+  const toggleReplies = () => {
+    setShowReplies(!showReplies);
+  };
   return (
     <article className={styles.comment}>
       <header>
@@ -30,7 +55,18 @@ const Comment = ({
         <span>{upvote}</span>
         <PiArrowFatLineDownDuotone />
         <span>{downvote}</span>
+        <span className={styles.reply}>reply </span>
+        <span className={styles.reply} onClick={toggleReplies}>
+          <HiOutlineChatBubbleLeftRight />
+        </span>
       </footer>
+      {showReplies && (
+        <div className={styles.replies}>
+          {replies?.map((reply) => (
+            <Reply key={reply.id} {...reply} />
+          ))}
+        </div>
+      )}
     </article>
   );
 };
