@@ -7,7 +7,7 @@ import {
 import { HiOutlineChatBubbleLeftRight } from 'react-icons/hi2';
 
 import Reply from '../Reply';
-import styles from './Comments.module.scss';
+import styles from './Comment.module.scss';
 
 type ReplyTypes = {
   reply: string;
@@ -44,7 +44,7 @@ const Comment = ({
   return (
     <article className={styles.comment}>
       <header>
-        <p>{username}</p>
+      <h4>{username}</h4>
         <time dateTime='2023-12-08T12:00:00Z'>
           December 8, 2023 at 12:00 PM {date}
         </time>

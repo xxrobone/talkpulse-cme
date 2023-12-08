@@ -1,9 +1,9 @@
-$primaryColor: #3498db;
-$backgroundColor: #dadada;
+$primaryColor: #da2f2f;
+$backgroundColor: #ececec;
 $borderRadius: 8px;
 
 .reply {
-    background-color: #f9f9f9;
+    background-color: $backgroundColor;
     border: 1px solid #ddd;
     border-radius: $borderRadius;
     margin: 1rem 0 1rem 1.2rem;
@@ -14,10 +14,10 @@ $borderRadius: 8px;
       justify-content: space-between;
       margin-bottom: 10px;
   
-      h3 {
+      h4 {
         margin: 0;
         font-size: 16px;
-        color: $primaryColor;
+        color: $primaryColor !important;
       }
   
       time {
