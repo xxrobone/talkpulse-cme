@@ -1,8 +1,16 @@
+import { ReactNode } from 'react';
+import styles from './Comments.module.scss'
 
-const Comments = () => {
+type CommentsType = {
+  children: ReactNode;
+};
+const Comments = ({ children }: CommentsType) => {
   return (
-    <div>index</div>
-  )
-}
+    <section className={styles.comments}>
+      <h3>Comments</h3>
+      {children}
+    </section>
+  );
+};
 
-export default Comments
+export default Comments;

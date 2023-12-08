@@ -1,0 +1,42 @@
+$primaryColor: #3498db;
+$backgroundColor: #dadada;
+$borderRadius: 8px;
+
+.comment {
+  background-color: $backgroundColor;
+  border: 1px solid #c0c0c0;
+  border-radius: $borderRadius;
+  margin-bottom: 20px;
+  padding: 15px;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    h3 {
+      margin: 0;
+      font-size: 18px;
+      color: $primaryColor;
+    }
+
+    time {
+      color: #777;
+    }
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  footer {
+    display: flex;
+    align-items: center;
+
+    span {
+        margin: 0 0.5rem;
+    }
+  }
+}
+

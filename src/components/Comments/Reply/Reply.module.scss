@@ -1,0 +1,28 @@
+.reply {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: $borderRadius;
+    margin-left: 20px;
+    padding: 15px;
+  
+    header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+  
+      h3 {
+        margin: 0;
+        font-size: 16px;
+        color: $primaryColor;
+      }
+  
+      time {
+        color: #777;
+      }
+    }
+  
+    p {
+      margin: 0;
+      line-height: 1.5;
+    }
+  }
