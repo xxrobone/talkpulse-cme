@@ -1,8 +1,34 @@
+// PostsList.tsx
 
-const Posts = () => {
-  return (
-    <div>index</div>
-  )
+import Post from '../Post';
+import styles from './Posts.module.scss';
+
+interface Post {
+  file?: File;
+  title: string;
+  username: string;
+  date: string;
+  description: string;
 }
 
-export default Posts
+interface PostsListProps {
+  posts: Post[];
+}
+
+const Posts = ({ posts }: PostsListProps) => {
+  return (
+    <div className={styles['posts-list']}>
+      {posts ? (
+        posts.map((post, index) => (
+          <div key={index} className={styles['post-item']}>
+            <Post {...post} />
+          </div>
+        ))
+      ) : (
+        <div>No posts yet</div>
+      )}
+    </div>
+  );
+};
+
+export default Posts;

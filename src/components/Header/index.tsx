@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
-import styles from './Header.module.css';
+import styles from './Header.module.scss';
 import { RiLoginCircleFill } from 'react-icons/ri';
+import Logo from '../../logo/Logo';
 
 const Header = () => {
   return (
     <div className={styles.header}>
-      <h2>Talk pulse</h2>
+      <Logo />
       <div>
         <Link to='./sign-in'>
           <button className={styles.btn}>

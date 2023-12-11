@@ -1,6 +1,11 @@
 import Comments from '../components/Comments';
 import Comment from '../components/Comments/Comment';
 import Reply from '../components/Comments/Reply';
+import Posts from '../components/Posts';
+import Post from '../components/Post';
+import { mockPosts } from '../assets/mockData/mockPosts';
+
+import styles from './Index.module.scss'
 
 interface Reply {
   reply: string;
@@ -98,8 +103,28 @@ const mockComments: Comment[] = [
   },
 ];
 
+const mockPost = [
+  {
+    file: 'https://images.pexels.com/photos/851555/pexels-photo-851555.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    title: 'Coffee and code, still the dream!',
+    username: 'Rupert von Kodar',
+    date: 'December 12, 2023',
+    description: 'Pre planning / styling this project, YAY!',
+  }
+]
+
 const Index = () => (
-  <div>
+  <div className={styles.Index}>
+    <Post 
+      file={mockPost[0].file}
+      title={mockPost[0].title}
+      username={mockPost[0].username}
+      date={mockPost[0].date}
+      description={mockPost[0].description}
+    />
+    <section>
+    <Posts posts={mockPosts} />
+    </section>
     <Comments>
       {mockComments.map((commentData) => (
         <Comment
