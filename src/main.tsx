@@ -2,10 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './index.scss';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import SingUp from './pages/signup/index.tsx';
-import Login from './pages/login/index.tsx';
+import {
+  RouterProvider,
+  createBrowserRouter,
+  redirect,
+} from 'react-router-dom';
+import SingUp, { action as signUpAction } from './routes/SignUp.tsx';
+import SignIn, { action as signInAction } from './routes/SignIn.tsx';
 import Index from './routes/Index.tsx';
+import auth from './lib/auth.ts';
 
 const router = createBrowserRouter([
   {
@@ -18,11 +23,20 @@ const router = createBrowserRouter([
       },
       {
         path: '/sign-up',
+        action: signUpAction,
         element: <SingUp />,
       },
       {
         path: '/sign-in',
-        element: <Login />,
+        action: signInAction,
+        element: <SignIn />,
+      },
+      {
+        path: 'sign-out',
+        action: () => {
+          auth.signOut();
+          return redirect('/');
+        },
       },
     ],
   },

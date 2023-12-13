@@ -1,21 +1,34 @@
-import { Link } from 'react-router-dom';
+import { Link, useFetcher } from 'react-router-dom';
 import styles from './Header.module.scss';
-import { RiLoginCircleFill } from 'react-icons/ri';
+import { RiLoginCircleLine, RiLogoutCircleLine } from 'react-icons/ri';
 import Logo from '../../logo/Logo';
+import auth from '../../lib/auth';
 
 const Header = () => {
+  const isAuthenticated = auth.isSignedIn();
+  const fetcher = useFetcher();
   return (
     <div className={styles.header}>
       <Logo />
       <div>
-        <Link to='./sign-in'>
-          <button className={styles.btn}>
-            <RiLoginCircleFill />
-          </button>
-        </Link>
-        <Link to='./sign-up'>
-          <button className={styles.btn}>Sign up</button>
-        </Link>
+        {isAuthenticated ? (
+          <fetcher.Form method='post' action='/sign-out'>
+            <button type='submit' className={styles.btn}>
+            <RiLogoutCircleLine />
+            </button>
+          </fetcher.Form>
+        ) : (
+          <>
+            <Link to='./sign-in'>
+              <button className={styles.btn}>
+                <RiLoginCircleLine />
+              </button>
+            </Link>
+            <Link to='./sign-up'>
+              <button className={styles.btn}>Sign up</button>
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
