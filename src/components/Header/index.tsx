@@ -1,6 +1,6 @@
 import { Link, useFetcher } from 'react-router-dom';
 import styles from './Header.module.scss';
-import { RiLoginCircleLine, RiLogoutCircleLine } from 'react-icons/ri';
+import { RiLoginCircleLine, RiLogoutCircleLine, } from 'react-icons/ri';
 import Logo from '../../logo/Logo';
 import auth from '../../lib/auth';
 

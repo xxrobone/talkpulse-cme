@@ -7,6 +7,7 @@ import {
 import Input from '../components/Input';
 
 import styles from './SignUp.module.scss';
+import { ActionData } from '../types/types';
 /* import Input from '../components/Input'; */
 
 export const action = async (args: ActionFunctionArgs) => {
@@ -42,7 +43,7 @@ export const action = async (args: ActionFunctionArgs) => {
 };
 
 const SingUp = () => {
-  const error = useActionData() as { message: string } | undefined;
+  const error = useActionData() as ActionData;
   /*   const onChangeHandler = () => {
     console.log('on change');
   }; */

@@ -8,6 +8,7 @@ import auth from '../lib/auth';
 
 import styles from './SignUp.module.scss';
 import Input from '../components/Input';
+import { ActionData } from '../types/types';
 
 export const action = async (args: ActionFunctionArgs) => {
   const { request } = args;
@@ -39,7 +40,7 @@ export const action = async (args: ActionFunctionArgs) => {
 };
 
 const SignIn = () => {
-  const error = useActionData() as { message: string } | undefined;
+  const error = useActionData() as ActionData
   return (
     <div className={styles['sign-up']}>
       <h2>Sign-in</h2>
