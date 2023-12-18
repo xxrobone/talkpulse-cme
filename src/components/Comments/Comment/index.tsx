@@ -43,11 +43,11 @@ const Commenttt = ({ body, author, createdAt }: CommentTypes) => {
       <p>{body}</p>
        <footer>
         <PiArrowFatLineUpFill />
-        <span>{upvote}</span>
+        <span>1</span>
         <PiArrowFatLineDownDuotone />
-        <span>{downvote}</span>
+        <span>2</span>
         <span className={styles.reply}>reply </span>
-        <span className={styles.reply} onClick={toggleReplies}>
+        <span className={styles.reply} onClick={() => console.log('click reply')}>
           <HiOutlineChatBubbleLeftRight />
         </span>
       </footer>

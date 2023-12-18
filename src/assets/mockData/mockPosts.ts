@@ -6,7 +6,7 @@ export interface Post {
     _id: string;
   }
     date: string;
-    content: string;
+    body: string;
   }
   
   export const mockPosts: Post[] = [
@@ -15,20 +15,20 @@ export interface Post {
       title: 'Beautiful Landscape',
       author: { username: 'JohnDoe', _id: '222'},
       date: 'December 11, 2023',
-      content: 'Exploring nature and enjoying the scenery.',
+      body: 'Exploring nature and enjoying the scenery.',
     },
     {
       file: new File([''], 'funny-cat-video.mp4', { type: 'video/mp4' }),
       title: 'Funny Cat Video',
       author: {username: 'JaneDoe', _id: '444'},
       date: 'December 12, 2023',
-      content: 'Watch this adorable cat doing funny things!',
+      body: 'Watch this adorable cat doing funny things!',
     },
     {
       file: new File([''], 'awesome-beach.jpg', { type: 'image/jpeg' }),
       title: 'Sunset at the Beach',
       author: {username: 'AliceSmith', _id: '4583'},
       date: 'December 13, 2023',
-      content: 'Enjoying a peaceful sunset by the beach.',
+      body: 'Enjoying a peaceful sunset by the beach.',
     },
   ];

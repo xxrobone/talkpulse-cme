@@ -6,19 +6,27 @@ import styles from './Reply.module.scss';
 
 type ReplyTypes = {
   reply: string;
- author: { username: string;}
-  date: string;
+  author: { username: string };
+  createdAt: string;
   upvote: number;
   downvote: number;
   id: string;
   parentCommentId: string;
 };
 
-const Reply = ({ reply, author, date, upvote, downvote }: ReplyTypes) => {
+const Reply = ({
+  reply,
+  author,
+  createdAt,
+  upvote = 5,
+  downvote = 3,
+}: ReplyTypes) => {
   return (
     <div className={styles.reply}>
+      <header>
       <h4>{author.username}</h4>
-      <time dateTime={date}>{date}</time>
+      <time dateTime={createdAt}>{createdAt}</time>
+      </header>
       <p>{reply}</p>
       <footer>
         <PiArrowFatLineUpFill />

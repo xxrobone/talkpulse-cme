@@ -1,5 +1,5 @@
-$primaryColor: #121212;
-$backgroundColor: #dfdfdf;
+$primaryColor: #dadada;
+$backgroundColor: #000000;
 $borderRadius: 8px;
 
 .comment {
@@ -11,26 +11,25 @@ $borderRadius: 8px;
 
   &:hover {
     transform: translateY(-1px);
-    filter: drop-shadow(1px 1px rgba(0,0,0,.225));
+    filter: drop-shadow(1px 1px rgba(0, 0, 0, 0.225));
   }
 
-  >.comment-header {
+  > .comment-header {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
     font-family: monospace;
 
-    >time {
-      color: #777;
+    time {
+      color: #888;
     }
 
-    >p {
-        margin: 0;
-        font-size: 12px;
-        color: $primaryColor;
+    > p {
+      margin: 0;
+      font-size: 12px;
+      color: $primaryColor;
     }
   }
-
 
   .text {
     margin: 0;
@@ -44,23 +43,29 @@ $borderRadius: 8px;
 
     :nth-child(1),
     :nth-child(3) {
-    &:hover {
+      color: #383838;
+      &:hover {
         cursor: pointer;
-    }
+      }
     }
 
     span {
-        margin: 0 0.5rem;
+      color: #888;
+      margin: 0 0.5rem;
     }
 
     .reply {
-        font-family: monospace;
+      font-family: monospace;
+      color: #888;
 
         &:hover {
-            color: #121212;
-            cursor: pointer;
-        }
+          color: $primaryColor;
+          cursor: pointer;
+      }
+    }
+
+    .icon {
+      
     }
   }
 }
-
