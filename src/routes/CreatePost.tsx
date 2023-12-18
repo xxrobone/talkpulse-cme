@@ -70,7 +70,7 @@ const CreatePost = () => {
           placeholder='Link'
           error={false}
           /*  onChange={onChangeHandler} */
-          required={true}
+          required={false}
         />
         <label htmlFor='body'>Content</label>
         <TextArea

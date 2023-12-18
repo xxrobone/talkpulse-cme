@@ -20,7 +20,7 @@ const TextArea: FC<TextProps> = ({
   id,
 }) => {
   return (
-    <div className={styles.textarea}>
+    <div className={styles['textarea-wrapper']}>
  {/*      <label
         htmlFor={label}
         className='text-lg font-semibold block text-gray-700 font-bold mb-2 '
