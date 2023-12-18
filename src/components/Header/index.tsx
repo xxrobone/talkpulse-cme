@@ -3,6 +3,7 @@ import styles from './Header.module.scss';
 import { RiLoginCircleLine, RiLogoutCircleLine, } from 'react-icons/ri';
 import Logo from '../../logo/Logo';
 import auth from '../../lib/auth';
+/* import Logo2 from '../Logo2/Logo2'; */
 
 const Header = () => {
   const isAuthenticated = auth.isSignedIn();

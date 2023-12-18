@@ -2,7 +2,7 @@ import React from 'react'
 
 const Logo2 = () => {
   return (
-      <div>
+      <div style={{transform: 'scale(0.5'}}>
           <svg width="80" height="60" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
 <ellipse cx="22.4085" cy="21.6788" rx="3.97906" ry="4.16058" fill="#D9D9D9"/>
 <mask id="path-2-inside-1_408_48" fill="white">
