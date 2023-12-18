@@ -1,4 +1,3 @@
-import { convertDate } from '../../../utils/convertDate';
 import { timeAgo } from '../../../utils/timeAgo';
 import styles from './Comment.module.scss';
 
