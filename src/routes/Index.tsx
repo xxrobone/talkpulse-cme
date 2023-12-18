@@ -31,7 +31,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   return { page, ...backendResponse };
 };
 
-
 const Index = () => {
   const data = useLoaderData() as {
     posts: Post[];
@@ -44,7 +43,10 @@ const Index = () => {
   return (
     <div className={styles.Index}>
       {data?.posts.map((post) => (
-        <PostItem post={post} key={post._id} />
+        <div key={post._id} className={styles['post-item-wrapper']}>
+          <div className={styles.border}></div>
+          <PostItem post={post} />
+        </div>
       ))}
       <Pagination
         currentPage={data.page}
@@ -58,14 +60,6 @@ const Index = () => {
 };
 
 export default Index;
-
-
-
-
-
-
-
-
 
 /* 
 interface Reply {
@@ -180,14 +174,16 @@ const mockPost = [
   },
 ]; */
 
-
-      {/* {
+{
+  /* {
        data ? data?.posts?.map((post) => (
           <PostItem post={post} key={post._id} />
         ))
         : <div>no no no</div>
-      } */}
-      {/*   <Post
+      } */
+}
+{
+  /*   <Post
         file={mockPost[0].file}
         title={mockPost[0].title}
         author={mockPost[0].author}
@@ -209,4 +205,5 @@ const mockPost = [
             replies={commentData.replies}
           />
         ))}
-      </Comments> */}
+      </Comments> */
+}

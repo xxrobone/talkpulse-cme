@@ -10,14 +10,14 @@ interface CommentProps {
 
 const Comment: React.FC<CommentProps> = ({ body, author, createdAt }) => (
   <div className={styles.comment}>
-    <header>
+    <header className={styles['comment-header']}>
       <p>Author: {author && author}</p>
 
       <p>
         <time dateTime={createdAt}>{timeAgo(createdAt)}</time>
       </p>
     </header>
-    <p>{body}</p>
+    <p className={styles.text}>{body}</p>
   </div>
 );
 

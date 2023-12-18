@@ -4,8 +4,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    .post-item-wrapper {
+        .border {
+            height: 2px;
+            border-bottom: 1px solid #888;
+            padding: 1rem 0;
+        }
+    }
 }
 
-li {
-    color: white;
-}
