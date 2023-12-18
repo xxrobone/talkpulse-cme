@@ -30,7 +30,7 @@ const PostItem = ({ post }: { post: Post }) => {
           <section>{post.body}</section>
         </div>
       )}
-       {post.link && (
+       {post && (
             <span className={styles.link}>
               <Link to={`/posts/${post._id}`}>View full post</Link>
             </span>

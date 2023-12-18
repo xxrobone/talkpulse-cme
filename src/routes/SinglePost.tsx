@@ -1,33 +1,50 @@
 import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
-import { Post } from '../types/types';
+import { Post, User } from '../types/types';
 import styles from './SinglePost.module.scss';
 import Comment from '../components/Comments/Comment/Comment';
 import { HiOutlineChatBubbleLeftRight, HiPencilSquare } from 'react-icons/hi2';
 import { timeAgo } from '../utils/timeAgo';
-import auth from '../lib/auth'
+import auth from '../lib/auth';
 
 export const loader = async (args: LoaderFunctionArgs) => {
   const { id } = args.params;
 
-  const response = await fetch(
+  const postResponse = await fetch(
     import.meta.env.VITE_SERVER_URL + '/posts/' + id,
     {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
     }
   );
 
-  
-  const posts = await response.json();
+  const userResponse = await fetch(import.meta.env.VITE_SERVER_URL + '/user', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${auth.getJWT()}`,
+    },
+  });
 
-  return posts;
+  const [postData, userData] = await Promise.all([
+    postResponse.json(),
+    userResponse.json(),
+  ]);
+
+  console.log(userData);
+
+  return { post: postData, user: userData };
 };
 
 const SinglePost = () => {
-  const post = useLoaderData() as Post;
+  const { post, user } = useLoaderData() as { post: Post; user: User };
+  const isAuthor =
+    auth.isSignedIn() && user && post.author?.username === user.username;
+  console.log(isAuthor);
 
   console.log(post);
+  console.log(user);
   return (
     <>
       <div className={styles.post}>
@@ -36,11 +53,11 @@ const SinglePost = () => {
             <span>Author:</span> {post.author?.username}
           </p>
           <p>
-            {auth.isSignedIn() && 
-            <span className={styles.icon}>
-              <HiPencilSquare />
-            </span>            
-            }
+            {isAuthor && (
+              <span className={styles.icon}>
+                <HiPencilSquare />
+              </span>
+            )}
             <time dateTime={post.createdAt}>{timeAgo(post.createdAt)}</time>
           </p>
         </header>

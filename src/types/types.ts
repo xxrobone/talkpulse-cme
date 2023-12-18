@@ -22,3 +22,10 @@ export interface Post {
     createdAt: string;
     comments?: Comment[]
 }
+
+export interface User {
+    _id: string;
+    username: string;
+    password?: string;
+    email?: string;
+}
