@@ -4,40 +4,39 @@ import {
   redirect,
   useActionData,
 } from 'react-router-dom';
-import auth from '../lib/auth';
 
 import styles from './SignUp.module.scss';
 import Input from '../components/Input';
-import { ActionData } from '../types/types';
+import auth from "../lib/auth";
+import { ActionData } from "../types/types";
 
 export const action = async (args: ActionFunctionArgs) => {
-  const { request } = args;
+    const { request } = args;
 
-  const formData = await request.formData();
+    const formData = await request.formData();
 
-  const username = formData.get('username');
-  const password = formData.get('password');
+    const username = formData.get('username');
+    const password = formData.get('password');
 
-  const response = await fetch(import.meta.env.VITE_SERVER_URL + '/login', {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
-    body: JSON.stringify({ username, password }),
-  });
+    const response = await fetch(import.meta.env.VITE_SERVER_URL + '/login', {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        method: 'POST',
+        body: JSON.stringify({username, password})
+    })
 
-  if (!response.ok) {
-    const { message } = await response.json();
+    if (!response.ok) {
+        const { message } = await response.json();
 
-    return { message };
-  }
+        return { message };
+    }
 
-  const { token } = await response.json();
-  console.log(token);
-  auth.signIn(token);
+    const { token } = await response.json();
+    auth.signIn(token);
 
-  return redirect('/');
-};
+    return redirect('/');
+}
 
 const SignIn = () => {
   const error = useActionData() as ActionData
@@ -76,7 +75,7 @@ const SignIn = () => {
       </Form>
       <div className={styles['register-link']}>
         <p>
-          Dont't have an account? <a href='#'>Register</a>
+          Dont't have an account? Sign up now - <a href='#'>Register account</a>
         </p>
       </div>
     </div>

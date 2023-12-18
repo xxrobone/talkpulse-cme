@@ -15,7 +15,7 @@ interface PostProps {
   link?: string;
 }
 
-const Post: React.FC<PostProps> = ({ file, title, author, date, content }) => {
+const PostListItem: React.FC<PostProps> = ({ file, title, author, date, content }) => {
   const isImage = typeof file === 'string' || /\.(jpe?g|png|gif|bmp|webp)$/i.test((file as File)?.name || '');
 
   return (
@@ -46,4 +46,4 @@ const Post: React.FC<PostProps> = ({ file, title, author, date, content }) => {
   );
 };
 
-export default Post;
+export default PostListItem;

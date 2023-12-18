@@ -16,10 +16,7 @@ import CreatePost, {
   action as createPostAction,
 } from './routes/CreatePost.tsx';
 import RequireAuth from './components/RequireAuth/index.tsx';
-import SinglePost, {
-  loader as singlePostLoader,
-} from './routes/SinglePost.tsx';
-import ShowPost, {loader as showPostLoader} from './routes/ShowPost.tsx';
+import SinglePost,  {loader as singlePostLoader} from './routes/SinglePost.tsx';
 
 const router = createBrowserRouter([
   {
@@ -50,8 +47,8 @@ const router = createBrowserRouter([
       },
       {
         path: `posts/:id`,
-        action: showPostLoader,
-        element: <ShowPost />,
+        action: singlePostLoader,
+        element: <SinglePost />,
       },
       {
         element: <RequireAuth />,

@@ -1,12 +1,12 @@
 const signIn = (jwt: string) => {
-    localStorage.setItem('jwt', jwt);
+    localStorage.setItem('pulse-jwt', jwt);
 }
 
-const isSignedIn = () => !!localStorage.getItem('jwt');
+const isSignedIn = () => !!localStorage.getItem('pulse-jwt');
 
-const getJWT = () => localStorage.getItem('jwt');
+const getJWT = () => localStorage.getItem('pulse-jwt');
 
-const signOut = () => localStorage.removeItem('jwt');
+const signOut = () => localStorage.removeItem('pulse-jwt');
 
 export default {
     signIn,

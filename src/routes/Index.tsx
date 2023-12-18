@@ -1,36 +1,72 @@
 /* import Comments from '../components/Comments';
 import Comment from '../components/Comments/Comment';
 import Reply from '../components/Comments/Reply'; */
-import Post from '../components/Post';
+import { Post } from '../types/types';
 import PostItem from '../components/Post/PostItem';
 /* import { mockPosts } from '../assets/mockData/mockPosts'; */
+import {
+  LoaderFunctionArgs,
+  useLoaderData,
+  useSearchParams,
+} from 'react-router-dom';
+import Pagination from '../components/Pagination/Pagination';
 
 import styles from './Index.module.scss';
-import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
 
-export const loader = async (args: LoaderFunctionArgs) => {
-  const response = await fetch(import.meta.env.VITE_SERVER_URL + '/posts', {
-    headers: {
-      Accepts: 'application/json',
-    },
-  });
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const url = new URL(request.url);
+  const page = url.searchParams.get('page') || 1;
 
-  return {
-    posts: await response.json(),
-  };
+  const response = await fetch(
+    import.meta.env.VITE_SERVER_URL + `/posts/?page=${page}`,
+    {
+      headers: {
+        Accepts: 'application/json',
+      },
+    }
+  );
+
+  const backendResponse = await response.json();
+
+  return { page, ...backendResponse };
 };
 
-interface Post {
-  _id: string;
-  title: string;
-  link: string;
-  content: string;
-  author: {
-    _id: string;
-    username: string;
+
+const Index = () => {
+  const data = useLoaderData() as {
+    posts: Post[];
+    totalPages: number;
+    page: number;
   };
-  createdAt: string;
-}
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  return (
+    <div className={styles.Index}>
+      {data?.posts.map((post) => (
+        <PostItem post={post} key={post._id} />
+      ))}
+      <Pagination
+        currentPage={data.page}
+        totalPages={data.totalPages}
+        setPage={(page) =>
+          setSearchParams({ ...searchParams, page: page.toString() })
+        }
+      />
+    </div>
+  );
+};
+
+export default Index;
+
+
+
+
+
+
+
+
+
 /* 
 interface Reply {
   reply: string;
@@ -144,34 +180,7 @@ const mockPost = [
   },
 ]; */
 
-const Index = () => {
-  const data = useLoaderData() as { posts: Post[] | undefined };
-  console.log(data.posts);
 
-  if (!data) {
-    return <div>No posts found</div>;
-  }
-
-  return (
-    <div className={styles.Index}>
-      <ul>
-        {Array.isArray(data?.posts) ? (
-          data.posts.map((post) => (
-            <li key={post.title}>
-              <h2>
-                {post.title}
-                <p>{post.link}</p>
-                <p>{post.content}</p>
-                <p>{post.createdAt}</p>
-                <Link to={`/posts/${post._id}`}>Read more</Link>
-                <p>{post._id}</p>
-              </h2>
-            </li>
-          ))
-        ) : (
-          <div>No data</div>
-        )}
-      </ul>
       {/* {
        data ? data?.posts?.map((post) => (
           <PostItem post={post} key={post._id} />
@@ -201,8 +210,3 @@ const Index = () => {
           />
         ))}
       </Comments> */}
-    </div>
-  );
-};
-
-export default Index;

@@ -9,6 +9,7 @@ import { ActionData } from '../types/types';
 import Input from '../components/Input';
 
 import styles from './CreatePost.module.scss';
+import TextArea from '../components/TextArea';
 
 export const action = async (args: ActionFunctionArgs) => {
   try {
@@ -31,9 +32,8 @@ export const action = async (args: ActionFunctionArgs) => {
 
       return { error: 'Failed to create post' };
     }
-
-    // Successful response
-    return redirect('/');
+     // Redirect on successful response
+     return redirect('/');
   } catch (error) {
     console.error('Unexpected error during post creation:', error);
     return { error: 'Unexpected error occurred' };
@@ -72,14 +72,12 @@ const CreatePost = () => {
           /*  onChange={onChangeHandler} */
           required={true}
         />
-        <label htmlFor='content'>Content</label>
-        <Input
-          type='text'
-          name='content'
-          id='content'
-          placeholder='Content'
+        <label htmlFor='body'>Content</label>
+        <TextArea
+          name='body'
+          id='body'
+          placeholder='Feel free to express yourself'
           error={false}
-          required={true}
         />
         <button type='submit'>Create post</button>
       </Form>

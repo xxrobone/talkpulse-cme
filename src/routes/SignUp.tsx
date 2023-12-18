@@ -7,46 +7,41 @@ import {
 import Input from '../components/Input';
 
 import styles from './SignUp.module.scss';
-import { ActionData } from '../types/types';
-/* import Input from '../components/Input'; */
+import { ActionData } from "../types/types";
 
 export const action = async (args: ActionFunctionArgs) => {
-  const { request } = args;
+    const { request } = args;
 
-  const formData = await request.formData();
+    const formData = await request.formData();
 
-  const username = formData.get('username');
-  const password = formData.get('password');
-  const email = formData.get('email');
-  /* const invite = formData.get('invite'); */
-  const passwordConfirmation = formData.get('password_confirmation');
+    const username = formData.get('username');
+    const password = formData.get('password');
+    const invite = formData.get('invite');
+    const passwordConfirmation = formData.get('password_confirmation');
 
-  if (password !== passwordConfirmation) {
-    return { message: "Passwords don't match" };
-  }
+    if (password !== passwordConfirmation) {
+        return { message: 'Passwords don\'t match' };
+    }
 
-  const response = await fetch(import.meta.env.VITE_SERVER_URL + '/signup', {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
-    body: JSON.stringify({ username, password, email }),
-  });
+    const response = await fetch(import.meta.env.VITE_SERVER_URL + '/signup', {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        method: 'POST',
+        body: JSON.stringify({username, password, invite})
+    })
 
-  if (!response.ok) {
-    const { message } = await response.json();
+    if (!response.ok) {
+        const { message } = await response.json();
 
-    return { message };
-  }
+        return { message };
+    }
 
-  return redirect('/sign-in');
-};
+    return redirect('/sign-in');
+}
 
 const SingUp = () => {
   const error = useActionData() as ActionData;
-  /*   const onChangeHandler = () => {
-    console.log('on change');
-  }; */
   return (
     <div className={styles['sign-up']}>
       <h2>Sign-up</h2>
@@ -63,7 +58,7 @@ const SingUp = () => {
           id='username'
           placeholder='Username'
           error={false}
-          required={true}
+          required
         />
         <label htmlFor='email'>Email</label>
         <Input
