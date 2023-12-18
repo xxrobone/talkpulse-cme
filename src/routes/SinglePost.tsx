@@ -1,6 +1,8 @@
 import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
 import { Post } from '../types/types';
-import classes from './SinglePost.module.scss';
+import styles from './SinglePost.module.scss';
+import Comment from '../components/Comments/Comment/Comment';
+import {HiOutlineChatBubbleLeftRight} from 'react-icons/hi2'
 
 export const loader = async (args: LoaderFunctionArgs) => {
   const { id } = args.params;
@@ -24,13 +26,13 @@ const SinglePost = () => {
 console.log(post)
   return (
     <>
-      <div className={classes.post}>
-        <div className={classes.postInfo}>
+      <div className={styles.post}>
+        <div className={styles.postInfo}>
           {post.link ? (
             <Link to={post.link}>
               <h2>
                 {post.title}
-                <span className={classes.postUrl}>({post.link})</span>
+                <span className={styles.postUrl}>({post.link})</span>
               </h2>
             </Link>
           ) : (
@@ -38,21 +40,32 @@ console.log(post)
           )}
           <p>by {post.author.username}</p>
           {post.body && (
-            <div className={classes.postBody}>
+            <div className={styles.postBody}>
               <p>{post.body}</p>
             </div>
           )}
         </div>
-        <section className={classes.comments}>
-          {post.comments?.map((comment) => (
-            <p key={comment._id} className={classes.comment}>
-              {comment.body} - {comment?.author?.username}
-            </p>
-          ))}
-        </section>
+        <section className={styles.comments}>
+          <h2><HiOutlineChatBubbleLeftRight/> Comments:</h2>
+  {post.comments?.map((comment) => (
+    <Comment
+      key={comment._id}
+      body={comment.body}
+      author={comment?.author?.username}
+      createdAt={comment.createdAt}
+    />
+  ))}
+</section>
       </div>
     </>
   );
 };
 
 export default SinglePost;
+
+
+/* 
+ <p key={comment._id} className={styles.comment}>
+              {comment.body} - {comment?.author?.username}
+            </p> 
+*/

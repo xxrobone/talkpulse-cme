@@ -6,7 +6,8 @@ export interface Comment {
     author: {
         _id: string;
         username: string
-    }
+    },
+    createdAt: string;
 }
 
 export interface Post {

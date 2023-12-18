@@ -7,16 +7,21 @@ import {
   createBrowserRouter,
   redirect,
 } from 'react-router-dom';
-import SingUp, { action as signUpAction } from './routes/SignUp.tsx';
+import SignUp, { action as signUpAction } from './routes/SignUp.tsx';
 import SignIn, { action as signInAction } from './routes/SignIn.tsx';
 import Index, { loader as indexLoader } from './routes/Index.tsx';
 import auth from './lib/auth.ts';
-import Verification from './routes/Verification.tsx';
 import CreatePost, {
   action as createPostAction,
 } from './routes/CreatePost.tsx';
 import RequireAuth from './components/RequireAuth/index.tsx';
-import SinglePost,  {loader as singlePostLoader} from './routes/SinglePost.tsx';
+import SinglePost, {
+  loader as singlePostLoader,
+} from './routes/SinglePost.tsx';
+
+/* 
+import Verification from './routes/Verification.tsx';
+*/
 
 const router = createBrowserRouter([
   {
@@ -29,9 +34,9 @@ const router = createBrowserRouter([
         element: <Index />,
       },
       {
-        path: 'sign-up',
-        action: signUpAction,
-        element: <SingUp />,
+        path: '/posts/:id',
+        loader: singlePostLoader,
+        element: <SinglePost />,
       },
       {
         path: 'sign-in',
@@ -39,16 +44,16 @@ const router = createBrowserRouter([
         element: <SignIn />,
       },
       {
+        path: 'sign-up',
+        action: signUpAction,
+        element: <SignUp />,
+      },
+      {
         path: 'sign-out',
         action: () => {
           auth.signOut();
           return redirect('/');
         },
-      },
-      {
-        path: `posts/:id`,
-        action: singlePostLoader,
-        element: <SinglePost />,
       },
       {
         element: <RequireAuth />,
@@ -59,11 +64,6 @@ const router = createBrowserRouter([
             element: <CreatePost />,
           },
         ],
-      },
-
-      {
-        path: 'verification',
-        element: <Verification />,
       },
     ],
   },
