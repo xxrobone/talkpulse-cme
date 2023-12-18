@@ -11,7 +11,7 @@ import styles from './Comment.module.scss';
 
 type ReplyTypes = {
   reply: string;
-  username: string;
+ author: { username: string;}
   date: string;
   upvote: number;
   downvote: number;
@@ -20,7 +20,7 @@ type ReplyTypes = {
 };
 
 type CommentTypes = {
-  username: string;
+  author: {username: string;}
   comment: string;
   date: string;
   upvote: number;
@@ -30,7 +30,7 @@ type CommentTypes = {
 
 const Comment = ({
   comment,
-  username,
+  author,
   date,
   upvote,
   downvote,
@@ -44,7 +44,7 @@ const Comment = ({
   return (
     <article className={styles.comment}>
       <header>
-      <h4>{username}</h4>
+      <h4>{author.username}</h4>
         <time dateTime='2023-12-08T12:00:00Z'>
           December 8, 2023 at 12:00 PM {date}
         </time>

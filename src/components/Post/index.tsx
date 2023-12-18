@@ -6,12 +6,16 @@ import styles from './Post.module.scss';
 interface PostProps {
   file?: File | string; 
   title: string;
-  username: string;
+  author: {
+    _id: string;
+    username: string;
+  };
   date: string;
-  description: string;
+  content: string;
+  link?: string;
 }
 
-const Post: React.FC<PostProps> = ({ file, title, username, date, description }) => {
+const Post: React.FC<PostProps> = ({ file, title, author, date, content }) => {
   const isImage = typeof file === 'string' || /\.(jpe?g|png|gif|bmp|webp)$/i.test((file as File)?.name || '');
 
   return (
@@ -33,10 +37,10 @@ const Post: React.FC<PostProps> = ({ file, title, username, date, description })
       <div className={styles['post-info']}>
         <h2 className={styles.title}>{title}</h2>
         <div className={styles.metadata}>
-          <span className={styles.username}>{username}</span>
+          <span className={styles.username}>{author?.username}</span>
           <span className={styles.date}>{date}</span>
         </div>
-        <p className={styles.description}>{description}</p>
+        <p className={styles.content}>{content}</p>
       </div>
     </div>
   );

@@ -10,51 +10,33 @@ import Input from '../components/Input';
 
 import styles from './CreatePost.module.scss';
 
-/* export const action = async (args: ActionFunctionArgs) => {
-  const { request } = args;
-  const formData = await request.formData();
-
-  const postData = Object.fromEntries(formData.entries());
-
-  const response = await fetch(import.meta.env.VITE_SERVER_URL + '/posts', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${auth.getJWT()}`,
-    },
-    body: JSON.stringify(postData),
-  });
-
-  if (!response.ok) {
-    const errorData = await response.json();
-      console.error('Error creating post:', errorData);
-      return { error: 'Failed to create post' };
-  } else {
-    return redirect('/');
-  }
-}; */
 export const action = async (args: ActionFunctionArgs) => {
-  const { request } = args;
-  const formData = await request.formData();
+  try {
+    const { request } = args;
+    const formData = await request.formData();
+    const postData = Object.fromEntries(formData.entries());
 
-  const postData = Object.fromEntries(formData.entries());
-
-  const response = await fetch(import.meta.env.VITE_SERVER_URL + '/posts', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${auth.getJWT()}`,
-    },
-    body: JSON.stringify(postData),
+    const response = await fetch(import.meta.env.VITE_SERVER_URL + '/posts', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${auth.getJWT()}`,
+      },
+      body: JSON.stringify(postData),
   });
 
-  if (!response.ok) {
-    const errorData = await response.json();
-    console.error('Error creating post:', errorData);
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Error creating post:', errorData);
 
-    return { error: 'Failed to create post' };
-  } else {
+      return { error: 'Failed to create post' };
+    }
+
+    // Successful response
     return redirect('/');
+  } catch (error) {
+    console.error('Unexpected error during post creation:', error);
+    return { error: 'Unexpected error occurred' };
   }
 };
 
@@ -70,7 +52,7 @@ const CreatePost = () => {
             <b>Error: </b> {error.message}
           </p>
         )}
-        <label htmlFor='title'>Username</label>
+        <label htmlFor='title'>Title</label>
         <Input
           type='text'
           name='title'

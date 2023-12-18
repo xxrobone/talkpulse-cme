@@ -6,9 +6,12 @@ import styles from './Posts.module.scss';
 interface Post {
   file?: File;
   title: string;
-  username: string;
+  author: {
+    _id: string;
+    username: string;
+  };
   date: string;
-  description: string;
+  content: string;
 }
 
 interface PostsListProps {

@@ -1,36 +1,67 @@
-import Comments from '../components/Comments';
+/* import Comments from '../components/Comments';
 import Comment from '../components/Comments/Comment';
-import Reply from '../components/Comments/Reply';
-import Posts from '../components/Posts';
+import Reply from '../components/Comments/Reply'; */
 import Post from '../components/Post';
-import { mockPosts } from '../assets/mockData/mockPosts';
+import PostItem from '../components/Post/PostItem';
+/* import { mockPosts } from '../assets/mockData/mockPosts'; */
 
-import styles from './Index.module.scss'
+import styles from './Index.module.scss';
+import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
 
+export const loader = async (args: LoaderFunctionArgs) => {
+  const response = await fetch(import.meta.env.VITE_SERVER_URL + '/posts', {
+    headers: {
+      Accepts: 'application/json',
+    },
+  });
+
+  return {
+    posts: await response.json(),
+  };
+};
+
+interface Post {
+  _id: string;
+  title: string;
+  link: string;
+  content: string;
+  author: {
+    _id: string;
+    username: string;
+  };
+  createdAt: string;
+}
+/* 
 interface Reply {
   reply: string;
-  username: string;
+  author: {
+    _id: string;
+    username: string;
+  };
   date: string;
   upvote: number;
   downvote: number;
   id: string;
   parentCommentId: string;
-}
-
+} */
+/* 
 interface Comment {
   comment: string;
-  username: string;
-  date: string; // Assuming the date is represented as a string for simplicity
+  author: {
+    _id: string;
+    username: string;
+  };
+  date: string; 
   upvote: number;
   downvote: number;
   id: string;
   replies: Reply[];
-}
+} */
 
-const mockComments: Comment[] = [
+/* const mockComments: Comment[] = [
   {
     comment: 'This is the first comment.',
-    username: 'user1',
+    author: {username: 'user1', _id: '123'},
     date: '2023-01-01',
     upvote: 10,
     downvote: 2,
@@ -38,7 +69,7 @@ const mockComments: Comment[] = [
     replies: [
       {
         reply: 'Reply to the first comment.',
-        username: 'replyUser1',
+       author: { username: 'replyUser1',_id: '223' },
         date: '2023-01-02',
         upvote: 5,
         downvote: 0,
@@ -47,7 +78,7 @@ const mockComments: Comment[] = [
       },
       {
         reply: 'mocking my comment eh?.',
-        username: 'replyUser2',
+        author: {username: 'replyUser2', _id: '323'},
         date: '2023-01-03',
         upvote: 25,
         downvote: 2000,
@@ -58,7 +89,7 @@ const mockComments: Comment[] = [
   },
   {
     comment: 'Great article! Thanks for sharing.',
-    username: 'user2',
+    author: { username: 'user2', _id: '423' },
     date: '2023-01-02',
     upvote: 15,
     downvote: 1,
@@ -67,7 +98,7 @@ const mockComments: Comment[] = [
   },
   {
     comment: 'I have a question about the topic.',
-    username: 'user3',
+    author: {username: 'user3', _id: '523'},
     date: '2023-01-03',
     upvote: 8,
     downvote: 0,
@@ -76,7 +107,7 @@ const mockComments: Comment[] = [
   },
   {
     comment: 'Interesting insights. I learned a lot.',
-    username: 'user4',
+    author: {username: 'user4', _id: '333'},
     date: '2023-01-04',
     upvote: 12,
     downvote: 3,
@@ -85,7 +116,7 @@ const mockComments: Comment[] = [
   },
   {
     comment: 'I disagree with some points mentioned.',
-    username: 'user5',
+   author: { username: 'user5', _id: '443'},
     date: '2023-01-05',
     upvote: 5,
     downvote: 7,
@@ -94,7 +125,7 @@ const mockComments: Comment[] = [
   },
   {
     comment: 'Looking forward to more content like this!',
-    username: 'user6',
+    author: {username: 'user6', _id: '32123'},
     date: '2023-01-06',
     upvote: 20,
     downvote: 1,
@@ -107,38 +138,71 @@ const mockPost = [
   {
     file: 'https://images.pexels.com/photos/851555/pexels-photo-851555.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     title: 'Coffee and code, still the dream!',
-    username: 'Rupert von Kodar',
+    author: {username: 'Rupert von Kodar', _id: '233123'},
     date: 'December 12, 2023',
-    description: 'Pre planning / styling this project, YAY!',
-  }
-]
+    content: 'Pre planning / styling this project, YAY!',
+  },
+]; */
 
-const Index = () => (
-  <div className={styles.Index}>
-    <Post 
-      file={mockPost[0].file}
-      title={mockPost[0].title}
-      username={mockPost[0].username}
-      date={mockPost[0].date}
-      description={mockPost[0].description}
-    />
-    <section>
-    <Posts posts={mockPosts} />
-    </section>
-    <Comments>
-      {mockComments.map((commentData) => (
-        <Comment
-          key={commentData.id}
-          comment={commentData.comment}
-          username={commentData.username}
-          date={commentData.date}
-          upvote={commentData.upvote}
-          downvote={commentData.downvote}
-          replies={commentData.replies}
-        />
-      ))}
-    </Comments>
-  </div>
-);
+const Index = () => {
+  const data = useLoaderData() as { posts: Post[] | undefined };
+  console.log(data.posts);
+
+  if (!data) {
+    return <div>No posts found</div>;
+  }
+
+  return (
+    <div className={styles.Index}>
+      <ul>
+        {Array.isArray(data?.posts) ? (
+          data.posts.map((post) => (
+            <li key={post.title}>
+              <h2>
+                {post.title}
+                <p>{post.link}</p>
+                <p>{post.content}</p>
+                <p>{post.createdAt}</p>
+                <Link to={`/posts/${post._id}`}>Read more</Link>
+                <p>{post._id}</p>
+              </h2>
+            </li>
+          ))
+        ) : (
+          <div>No data</div>
+        )}
+      </ul>
+      {/* {
+       data ? data?.posts?.map((post) => (
+          <PostItem post={post} key={post._id} />
+        ))
+        : <div>no no no</div>
+      } */}
+      {/*   <Post
+        file={mockPost[0].file}
+        title={mockPost[0].title}
+        author={mockPost[0].author}
+        date={mockPost[0].date}
+        content={mockPost[0].content}
+      />
+      <section>
+        <Posts posts={mockPosts} />
+      </section>
+      <Comments>
+        {mockComments.map((commentData) => (
+          <Comment
+            key={commentData.id}
+            comment={commentData.comment}
+            author={commentData.author}
+            date={commentData.date}
+            upvote={commentData.upvote}
+            downvote={commentData.downvote}
+            replies={commentData.replies}
+          />
+        ))}
+      </Comments> */}
+    </div>
+  );
+};
 
 export default Index;
