@@ -1,62 +1,102 @@
 // PostComponent.module.scss
 .post {
+  display: flex;
+  flex-direction: column;
+  margin: 0.725rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background-color: #121212;
+  color: white;
+  width: 100%;
+  height: fit-content;
+  min-height: 15rem;
+
+  &:hover {
+    transition: all 0.3 ease-in-out;
+    background-color: #232428;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.775);
+    cursor: pointer;
+  }
+
+  @media (min-width: 768px) {
+    width: 40vw;
+  }
+
+  header {
+    padding: 0 0.5rem;
+    height: 3rem;
+    background-color: black;
+    border-radius: 0.75rem;
     display: flex;
-    flex-direction: column;
-    border: 1px solid #ccc;
-    margin: 10px;
-    padding: 10px;
-    background-color: #ececec;
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.455);
-    width: 100%;
-    height: fit-content;
- 
+    align-items: center;
+    justify-content: space-between;
+    font-family: monospace;
 
-    &:hover {
-      transition: all 0.3 ease-in-out;
-      background-color: #fafafa;
-      box-shadow: 1px 1px 1px rgba(0,0,0,0.775);
-      cursor: pointer;
+    p {
+      color: #dfdfdf;
+      span {
+        color: #888;
+      }
     }
 
-    @media (min-width: 768px) {
-      width: 40vw;
+    time {
+      color: #888;
     }
-  
-    .media-container {
-      flex: 1;
-  
-      .media {
-        img,
-        video {
-          width: 100%;
-          height: auto;
-        }
-      }
-    }
-  
-    .post-info {
-      flex: 2;
-      padding: 0 20px 0 0;
-  
-      .title {
-        font-size: 1.5rem;
-        margin-bottom: 10px;
-      }
-  
-      .metadata {
-        color: #666;
-        font-size: 0.8rem;
-        margin-bottom: 10px;
-  
-        .username {
-          margin-right: 10px;
-        }
-      }
-  
-      .description {
-        font-size: 1rem;
-        line-height: 1.4;
+  }
+
+  .media-container {
+    flex: 1;
+
+    .media {
+      img,
+      video {
+        width: 100%;
+        height: auto;
       }
     }
   }
-  
+
+  .post-info {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+
+    a {
+      padding: 1rem 0;
+      text-decoration: none;
+      h2 {
+        color: #fff;
+        font-size: 1.25rem;
+        font-weight: 600;
+        span {
+          color: rgb(69, 194, 194);
+        }
+      }
+    }
+
+    section {
+      padding: 1rem 0;
+      color: #dfd9d9;
+    }
+  }
+
+  .link {
+    border-radius: 0.75rem;
+    padding: 1rem 0;
+    transition: background 0.4s ease-in-out;
+    a {
+      padding: 1rem 0;
+      text-decoration: none;
+      color: #629fff;
+      transition: padding 0.5s ease-in-out;
+    }
+
+    &:hover {
+      background: #121212;
+      a {
+        padding-left: 0.5rem;
+        color: #68a0fa;
+      }
+    }
+  }
+}

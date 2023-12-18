@@ -1,11 +1,15 @@
 .post {
     display: flex;
     align-items: start;
-    border: 2px solid black;
     margin-bottom: 20px;
     padding: 10px;
-    color: #121212;
-    filter: drop-shadow(8px 8px 8px rgba(0,0,0));
+    background-color: #121212;
+    color: #f8f8f8;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.355);
+
+    &:hover {
+      background-color: #282828;
+    }
   }
   
   .vote {
