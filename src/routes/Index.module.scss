@@ -6,6 +6,15 @@
     align-items: center;
 
     .post-item-wrapper {
+        width: 100%;
+
+        @media (min-width: 768px) {
+            width: 60vw;
+        }
+
+        @media (min-width: 1200px) {
+            width: 40vw;
+        }
         .border {
             height: 2px;
             border-bottom: 1px solid #888;

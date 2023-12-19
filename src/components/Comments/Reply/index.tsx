@@ -2,7 +2,10 @@ import {
   PiArrowFatLineDownDuotone,
   PiArrowFatLineUpFill,
 } from 'react-icons/pi';
+import { HiOutlineChatBubbleLeftRight } from 'react-icons/hi2';
+
 import styles from './Reply.module.scss';
+import { timeAgo } from '../../../utils/timeAgo';
 
 type ReplyTypes = {
   reply: string;
@@ -22,17 +25,24 @@ const Reply = ({
   downvote = 3,
 }: ReplyTypes) => {
   return (
-    <div className={styles.reply}>
-      <header>
-      <h4>{author.username}</h4>
-      <time dateTime={createdAt}>{createdAt}</time>
+    <div className={styles['reply-wrapper']}>
+      <header className={styles['comment-header']}>
+        <p>Author: {author && author.username}</p>
+
+        <p>
+          <time dateTime={createdAt}>{timeAgo(createdAt)}</time>
+        </p>
       </header>
-      <p>{reply}</p>
+      <p className={styles.text}>{reply}</p>
       <footer>
         <PiArrowFatLineUpFill />
         <span>{upvote}</span>
         <PiArrowFatLineDownDuotone />
         <span>{downvote}</span>
+        <span className={styles.reply}>reply </span>
+        <span className={styles.icon} /* onClick={toggleReplies} */>
+          <HiOutlineChatBubbleLeftRight />
+        </span>
       </footer>
     </div>
   );

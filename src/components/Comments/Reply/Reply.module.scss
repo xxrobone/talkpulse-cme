@@ -1,32 +1,71 @@
-$primaryColor: #91bff3;
+$primaryColor: #dadada;
+$secondaryColor: rgb(141, 169, 247);
 $backgroundColor: #2c2c2c;
 $borderRadius: 8px;
 
-.reply {
+.reply-wrapper {
     background-color: $backgroundColor;
     border: 1px solid #ddd;
     border-radius: $borderRadius;
-    margin: 1rem 0 1rem 1.2rem;
-    padding: 15px;
+    margin: 1rem 0.5rem 1rem 2rem;
+    padding: 0.5rem;
   
-    header {
+    > .comment-header {
       display: flex;
       justify-content: space-between;
       margin-bottom: 10px;
-  
-      h4 {
-        margin: 0;
-        font-size: 16px;
-        color: $primaryColor !important;
-      }
+      font-family: monospace;
   
       time {
-        color: #777;
+        color: #888;
       }
+  
+      > p {
+        margin: 0;
+        font-size: 0.75rem;
+        color: $primaryColor;
+      }
+    }
+  
+    .text {
+      margin: 0;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: $primaryColor;
     }
   
     p {
       margin: 0;
       line-height: 1.5;
+    }
+
+    footer {
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      font-size: 0.75rem;
+  
+      :nth-child(1),
+      :nth-child(3) {
+        color: #cfcfcf;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+  
+      span {
+        color: #888;
+        margin: 0 0.5rem;
+      }
+  
+      .reply {
+        font-family: monospace;
+        color: #888;
+  
+          &:hover {
+            color: $primaryColor;
+            cursor: pointer;
+        }
+      }
     }
   }

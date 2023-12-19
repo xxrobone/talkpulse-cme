@@ -26,13 +26,14 @@ $borderRadius: 8px;
 
     > p {
       margin: 0;
-      font-size: 12px;
+      font-size: 0.75rem;
       color: $primaryColor;
     }
   }
 
   .text {
     margin: 0;
+    font-size: 0.85rem;
     line-height: 1.5;
     color: $primaryColor;
   }
@@ -40,17 +41,18 @@ $borderRadius: 8px;
   footer {
     display: flex;
     align-items: center;
+    font-size: 0.75rem;
 
     :nth-child(1),
     :nth-child(3) {
-      color: #383838;
+      color: #cfcfcf;
       &:hover {
         cursor: pointer;
       }
     }
 
     span {
-      color: #888;
+      color: #cfcfcf;
       margin: 0 0.5rem;
     }
 

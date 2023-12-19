@@ -18,8 +18,8 @@ const PostItem = ({ post }: { post: Post }) => {
             <Link to={post.link}>
               <h2>
                 {post.title}
-                <br/>
-                <span className={styles.postUrl}>({post.link})</span>
+                <br />
+                <span>({post.link})</span>
               </h2>
             </Link>
           ) : (
@@ -27,14 +27,19 @@ const PostItem = ({ post }: { post: Post }) => {
               <h2>{post.title}</h2>
             </Link>
           )}
-          <section>{post.body}</section>
+          <section>
+            <p>{post.body}</p>
+          </section>
+          <div className={styles.link}>
+          <Link to={`/posts/${post._id}`}>View full post</Link>
+        </div>
         </div>
       )}
-       {post && (
-            <span className={styles.link}>
-              <Link to={`/posts/${post._id}`}>View full post</Link>
-            </span>
-          )}
+      {/* {post && (
+        <div className={styles.link}>
+          <Link to={`/posts/${post._id}`}>View full post</Link>
+        </div>
+      )} */}
     </div>
   );
 };

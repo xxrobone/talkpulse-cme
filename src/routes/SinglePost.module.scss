@@ -1,14 +1,15 @@
 .post {
-  display: flex;
-  flex-direction: column;
   margin: 0.725rem;
   padding: 1rem;
-  border-radius: 0.75rem;
-  background-color: #121212;
-  color: white;
   width: 100%;
   height: fit-content;
   min-height: 15rem;
+  display: flex;
+  flex-direction: column; 
+  border-radius: 0.75rem;
+  background-color: #121212;
+  color: white;
+  font-family: 'Roboto', sans-serif;
   transition: background 0.4s ease-out;
 
   @media (min-width: 768px) {
@@ -95,44 +96,6 @@
   .vote button {
     display: block;
     margin-bottom: 5px;
-  }
-  
- 
-
-  
-  .comment-form h2, .comments h2 {
-    margin-top: 20px;
-  }
-  
-  .comment-form {
-    border: 2px solid black;
-    padding: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .form-group textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    height: 100px;
-  }
-  
-  .form-group button {
-    width: 100%;
-    padding: 10px;
-    background-color: black;
-    color: white;
-    border: none;
-    cursor: pointer;
   }
   
   .comments {
