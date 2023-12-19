@@ -13,9 +13,9 @@ const Header = () => {
       <div className={styles['logo-wrapper']}>
         <Link to='/' className={styles['logo-link']}>
           <Logo />
-          <p>Pulse Talk</p>
+          <p>Talk Pulse</p>
         </Link>
-       
+       <p className={styles.sub}>Freedom of speech</p>
       </div>
       <div>
         {isAuthenticated ? (

@@ -5,36 +5,70 @@
   z-index: 1000;
   width: 100%;
   height: 80px;
-  padding: 0 0.5rem;
+  padding: 0.5rem;
   color: #f8f8f8;
   background-color: #121212;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  .logo-link {
-    text-decoration: none;
+  .logo-wrapper {
+    height: 60px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    color: #fff;
+    position: relative;
 
-    p {
-      border-radius: 0.25rem;
-      margin-left: 0.5rem;
-      padding: 0.5rem 0.75rem;
+    &:hover {
+      .logo-link {
+        p {
+          cursor: pointer;
+          background: #f96716;
+        }
+      }
+      .sub {
+        text-align: center;
+        width: 100%;
+        opacity: 1;
+      }
+    }
+
+    .logo-link {
+      position: relative;
+      width: fit-content;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      color: #fff;
+
+      p {
+        min-width: fit-content;
+        border-radius: 0.25rem;
+        margin-left: 0.5rem;
+        padding: 0.5rem 0.75rem;
+        font-family: monospace;
+        background: transparent;
+        transition: background 0.4 ease;
+
+        /* &:hover {
+          cursor: pointer;
+          background: #f96716;
+        } */
+      }
+    }
+
+    .sub {
+      position: relative;
+      width: 0;
       font-family: monospace;
-      background: transparent;
-&:hover {
-  cursor: pointer;
-  background-color: #F96716;
-}
+      opacity: 0;
+      transition: all 0.4s ease-in-out;
     }
   }
 
-   div {
+  div {
     display: flex;
     align-items: center;
-
 
     a {
       padding: 0 0.5rem;
@@ -51,12 +85,11 @@
       display: grid;
       place-content: center;
       transition: background 0.4s ease-in-out;
-    
+
       &:hover {
         background: #68a0fa;
         cursor: pointer;
       }
     }
-
   }
 }
