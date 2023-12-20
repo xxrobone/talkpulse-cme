@@ -1,4 +1,4 @@
-.votes {
+.delete {
   position: relative;
   display: flex;
   align-items: center;
@@ -12,18 +12,8 @@
     transition: color 0.3s ease-in-out;
 
     &:hover {
-      color: rgb(72, 102, 82);
       cursor: pointer;
-    }
-  }
-  .down-btn {
-    &:hover {
       color: rgb(170, 107, 95);
     }
-  }
-
-  span {
-    color: #888;
-    margin: 0 0.5rem;
   }
 }

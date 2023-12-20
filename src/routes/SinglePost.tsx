@@ -10,6 +10,7 @@ import { timeAgo } from '../utils/timeAgo';
 import auth from '../lib/auth';
 import styles from './SinglePost.module.scss';
 import UpdatePost from '../routes/UpdatePost';
+import DeletePost from '../components/DeletePost/DeletePost';
 
 type SinglePostLoaderData = {
   post: Post;
@@ -78,14 +79,17 @@ const SinglePost = () => {
             <p>
               <span>Author:</span> {post.author?.username}
             </p>
-            <p>
+            <div>
               {isAuthor && (
-                <span className={styles.icon}>
-                  <HiPencilSquare onClick={handleUpdateClick} />
-                </span>
+                <>
+                  <DeletePost post={post} />
+                  <span className={styles.icon}>
+                    <HiPencilSquare onClick={handleUpdateClick} />
+                  </span>
+                </>
               )}
               <time dateTime={post.createdAt}>{timeAgo(post.createdAt)}</time>
-            </p>
+            </div>
           </header>
           <div className={styles['post-info']}>
             {post.link ? (

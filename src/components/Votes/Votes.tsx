@@ -29,7 +29,6 @@ export const action = async (args: ActionFunctionArgs) => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${auth.getJWT()}`,
     },
-    /*  body: JSON.stringify({ commentBody: formData.get('body') }), */
   });
 
   if (!response.ok) {
@@ -65,7 +64,7 @@ const Votes = ({ post }: { post: Post }) => {
           value={location.pathname + location.search}
         />
         <input type='hidden' value='down' name='vote' />
-        <button type='submit'>
+        <button type='submit' className={styles['down-btn']}>
           {' '}
           <PiArrowFatLineDownDuotone />
         </button>

@@ -44,7 +44,7 @@ const replies: ReplyTypes[] = [
     createdAt: '2023-01-04',
     upvote: 25,
     downvote: 4,
-    id: 'r1',
+    id: 'r2',
     parentCommentId: '1',
   },
 ];
