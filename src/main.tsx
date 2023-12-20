@@ -18,6 +18,8 @@ import RequireAuth from './components/RequireAuth/index.tsx';
 import SinglePost, {
   loader as singlePostLoader,
 } from './routes/SinglePost.tsx';
+import { action as createCommentAction } from './components/Comments/AddComment/AddComment.tsx';
+import { action as voteAction } from './components/Votes/Votes';
 
 /* 
 import Verification from './routes/Verification.tsx';
@@ -62,6 +64,14 @@ const router = createBrowserRouter([
             path: 'create-post',
             action: createPostAction,
             element: <CreatePost />,
+          },
+          {
+            path: '/posts/:postId/comments',
+            action: createCommentAction,
+          },
+          {
+            path: '/posts/:postId/vote',
+            action: voteAction,
           },
         ],
       },

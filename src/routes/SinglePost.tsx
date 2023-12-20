@@ -1,10 +1,20 @@
+import { useState, MouseEvent } from 'react';
 import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
-import { Post, User } from '../types/types';
-import styles from './SinglePost.module.scss';
-import Comment from '../components/Comments/Comment/Comment';
 import { HiOutlineChatBubbleLeftRight, HiPencilSquare } from 'react-icons/hi2';
+
+import { Post, User } from '../types/types';
+import Comment from '../components/Comments/Comment/Comment';
+import AddComment from '../components/Comments/AddComment/AddComment';
+import Votes from '../components/Votes/Votes';
 import { timeAgo } from '../utils/timeAgo';
 import auth from '../lib/auth';
+
+import styles from './SinglePost.module.scss';
+
+type SinglePostLoaderData = {
+  post: Post;
+  user: User;
+};
 
 export const loader = async (args: LoaderFunctionArgs) => {
   const { id } = args.params;
@@ -38,10 +48,26 @@ export const loader = async (args: LoaderFunctionArgs) => {
 };
 
 const SinglePost = () => {
-  const { post, user } = useLoaderData() as { post: Post; user: User };
+  const [showComments, setShowComments] = useState<boolean>(false);
+  const [addAComment, setAddAComment] = useState<boolean>(false);
+  const { post, user } = useLoaderData() as SinglePostLoaderData;
   const isAuthor =
     auth.isSignedIn() && user && post.author?.username === user.username;
   console.log(isAuthor);
+
+  const handleShowComments = (
+    e: React.MouseEvent<SVGSVGElement, MouseEvent>
+  ) => {
+    e.stopPropagation();
+    setShowComments((prev) => !prev);
+  };
+
+  const handleAddAComment = (
+    e: React.MouseEvent<SVGSVGElement, MouseEvent>
+  ) => {
+    e.stopPropagation();
+    setAddAComment((prev) => !prev);
+  };
 
   console.log(post);
   console.log(user);
@@ -74,24 +100,47 @@ const SinglePost = () => {
             <h2>{post.title}</h2>
           )}
           {post.body && (
-            <section className={styles.postBody}>
+            <section className={styles['post-body']}>
               <p>{post.body}</p>
             </section>
           )}
         </div>
-        <section className={styles.comments}>
-          <h2>
-            <HiOutlineChatBubbleLeftRight /> Comments:
-          </h2>
-          {post.comments?.map((comment) => (
-            <Comment
-              key={comment._id}
-              body={comment.body}
-              author={comment?.author?.username}
-              createdAt={comment.createdAt}
+        <footer>
+          <Votes post={post} />
+          <span className={styles.reply}>
+            Add comment{' '}
+            <HiPencilSquare
+              onClick={handleAddAComment}
             />
-          ))}
-        </section>
+          </span>
+          {/*  <span className={styles.icon} onClick={toggleReplies}> */}
+          <span className={styles.comments}>Check comments: </span>{' '}
+          <p className={styles.icon}>
+            <HiOutlineChatBubbleLeftRight
+              onClick={handleShowComments}
+            />
+          </p>
+        </footer>
+        {showComments ? (
+          <section className={styles['comments-list']}>
+            {/* probably should create a pop up modal for adding comments */}
+            {post.comments?.slice().sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map((comment) => (
+              <Comment
+                key={comment._id}
+                body={comment.body}
+                author={comment?.author?.username}
+                createdAt={comment.createdAt}
+              />
+            ))}
+          </section>
+        ) : (
+          <div></div>
+        )}
+        {addAComment ? (
+          <AddComment postId={post._id} setAddAComment={setAddAComment} setShowComments={setShowComments} />
+        ) : (
+          <div></div>
+        )}
       </div>
     </>
   );

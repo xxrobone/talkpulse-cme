@@ -1,3 +1,8 @@
+$primaryColor: #dadada;
+$backgroundColor: #000000;
+$borderRadius: 8px;
+
+
 .post {
   margin: 0.725rem;
   padding: 1rem;
@@ -67,17 +72,24 @@
         padding: 1rem 0;
         text-decoration: none;
         h2 {
-          color: #fff;
+          color: #F96716;
           font-size: 1.25rem;
-          font-weight: 600;
+          font-weight: 800;
           span {
             color: rgb(69, 194, 194);
+            font-weight: 200;
           }
         }
       }
+
+      h2 {
+        color: #F96716;
+        font-size: 1.25rem;
+        font-weight: 800;
+      }
   
      
-    section {
+    .post-body {
       padding: 1rem 0;    
 
       p {
@@ -86,22 +98,31 @@
     }
     }
 
-  }
-  
-  .vote {
-    text-align: center;
-    margin-right: 10px;
-  }
-  
-  .vote button {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .comments {
-    padding: 1rem;
+    footer {
+      display: flex;
+      align-items: center;
+      font-size: 0.75rem;
+      font-family: monospace;
 
-    h2 {
-      padding: 1rem 0;
-    }
+      .comments {
+        margin-left: 1rem;
+        color: #888;
+      }
+  
+      .icon {
+        margin: 0 0.5rem;
+      }
+      .reply {
+        margin: 0 0.5rem 0 1rem;
+        color: #888;
+  
+          &:hover {
+            color: $primaryColor;
+            cursor: pointer;
+        }
+      }
   }
+  .comments-list {
+    margin: 1rem 0;
+  }
+}

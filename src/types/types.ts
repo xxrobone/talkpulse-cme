@@ -20,7 +20,8 @@ export interface Post {
         username: string
     }
     createdAt: string;
-    comments?: Comment[]
+    comments?: Comment[];
+    score: number;
 }
 
 export interface User {

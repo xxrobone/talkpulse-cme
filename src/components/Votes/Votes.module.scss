@@ -1,0 +1,26 @@
+.votes {
+  position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+
+    button {
+      outline: none;
+      border: none;
+      background: transparent;
+    }
+
+    :nth-child(1),
+    :nth-child(3) {
+      color: #dfdfdf;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    span {
+      color: #888;
+      margin: 0 0.5rem;
+    }
+
+    }
