@@ -64,17 +64,15 @@ const AddComment: React.FC<AddCommentProps> = ({
       <h2>Leave a comment:</h2>
       <fetcher.Form method='post' action={`/posts/${postId}/comments`}>
         <div className={styles['textarea-wrapper']}>
-          <textarea
-            name='body'
-            id='body'
-            required
-            ref={textRef}
-          ></textarea>
+          <textarea name='body' id='body' required ref={textRef}></textarea>
         </div>
-        <button type='submit'>Post comment</button>{' '}
-        <button type='button' onClick={handleCancelClick}>
-          Cancel
-        </button>
+        <div className={styles['buttons-container']}>
+          <button type='submit'>Post comment</button>{' '}
+          <button type='button' onClick={handleCancelClick}>
+            {' '}
+            Cancel
+          </button>
+        </div>
       </fetcher.Form>
     </div>
   );

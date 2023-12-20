@@ -20,6 +20,7 @@ import SinglePost, {
 } from './routes/SinglePost.tsx';
 import { action as createCommentAction } from './components/Comments/AddComment/AddComment.tsx';
 import { action as voteAction } from './components/Votes/Votes';
+import { action as updatePostAction } from './routes/UpdatePost.tsx';
 
 /* 
 import Verification from './routes/Verification.tsx';
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
             path: 'create-post',
             action: createPostAction,
             element: <CreatePost />,
+          },
+          {
+            path: '/posts/:postId/update',
+            action: updatePostAction,
           },
           {
             path: '/posts/:postId/comments',

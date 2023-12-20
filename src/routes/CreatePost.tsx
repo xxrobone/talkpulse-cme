@@ -1,8 +1,9 @@
 import {
   ActionFunctionArgs,
+  useActionData,
   Form,
   redirect,
-  useActionData,
+  useNavigate,
 } from 'react-router-dom';
 import auth from '../lib/auth';
 import { ActionData } from '../types/types';
@@ -20,11 +21,11 @@ export const action = async (args: ActionFunctionArgs) => {
     const response = await fetch(import.meta.env.VITE_SERVER_URL + '/posts', {
       method: 'POST',
       headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${auth.getJWT()}`,
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${auth.getJWT()}`,
       },
       body: JSON.stringify(postData),
-  });
+    });
 
     if (!response.ok) {
       const errorData = await response.json();
@@ -32,8 +33,8 @@ export const action = async (args: ActionFunctionArgs) => {
 
       return { error: 'Failed to create post' };
     }
-     // Redirect on successful response
-     return redirect('/');
+    // Redirect on successful response
+    return redirect('/');
   } catch (error) {
     console.error('Unexpected error during post creation:', error);
     return { error: 'Unexpected error occurred' };
@@ -42,6 +43,11 @@ export const action = async (args: ActionFunctionArgs) => {
 
 const CreatePost = () => {
   const error = useActionData() as ActionData;
+  const navigate = useNavigate();
+
+  const cancelCreate = () => {
+    navigate('/');
+  };
 
   return (
     <div className={styles['create-post']}>
@@ -79,7 +85,10 @@ const CreatePost = () => {
           placeholder='Feel free to express yourself'
           error={false}
         />
-        <button type='submit'>Create post</button>
+        <button type='submit'>Create post</button>{' '}
+        <button type='button' onClick={cancelCreate}>
+          Cancel
+        </button>
       </Form>
     </div>
   );
