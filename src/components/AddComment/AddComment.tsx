@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 import { useFetcher, ActionFunctionArgs } from 'react-router-dom';
 
-import auth from '../../../lib/auth';
-import { Post } from '../../../types/types';
+import auth from '../../lib/auth';
+import { Post } from '../../types/types';
 
 import styles from './AddComment.module.scss';
 

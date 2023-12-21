@@ -18,7 +18,8 @@ import RequireAuth from './components/RequireAuth/index.tsx';
 import SinglePost, {
   loader as singlePostLoader,
 } from './routes/SinglePost.tsx';
-import { action as createCommentAction } from './components/Comments/AddComment/AddComment.tsx';
+/* import { action as createCommentAction } from './components/AddComment/AddComment.tsx'; */
+import { action as createCommentAction } from './components/CommentForm/CommentForm.tsx';
 import { action as voteAction } from './components/Votes/Votes';
 import { action as deletePostAction } from './components/DeletePost/DeletePost';
 import { action as updatePostAction } from './routes/UpdatePost';

@@ -4,13 +4,15 @@ import { HiOutlineChatBubbleLeftRight, HiPencilSquare } from 'react-icons/hi2';
 
 import { Post, User } from '../types/types';
 import Comment from '../components/Comments/Comment/Comment';
-import AddComment from '../components/Comments/AddComment/AddComment';
+/* import AddComment from '../components/AddComment/AddComment'; */
+import CommentForm from '../components/CommentForm/CommentForm';
 import Votes from '../components/Votes/Votes';
 import { timeAgo } from '../utils/timeAgo';
 import auth from '../lib/auth';
-import styles from './SinglePost.module.scss';
 import UpdatePost from '../routes/UpdatePost';
 import DeletePost from '../components/DeletePost/DeletePost';
+
+import styles from './SinglePost.module.scss';
 
 type SinglePostLoaderData = {
   post: Post;
@@ -140,7 +142,8 @@ const SinglePost = () => {
           ) : (
             <div></div>
           )}
-          {addAComment ? <AddComment postId={post._id} /> : <div></div>}
+         {/*  {addAComment ? <AddComment postId={post._id} /> : <div></div>} */}
+          {addAComment ? <CommentForm postId={post._id} /> : <div></div>}
         </article>
       )}
     </>
