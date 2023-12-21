@@ -140,15 +140,7 @@ const SinglePost = () => {
           ) : (
             <div></div>
           )}
-          {addAComment ? (
-            <AddComment
-              postId={post._id}
-              setAddAComment={setAddAComment}
-              setShowComments={setShowComments}
-            />
-          ) : (
-            <div></div>
-          )}
+          {addAComment ? <AddComment postId={post._id} /> : <div></div>}
         </article>
       )}
     </>
