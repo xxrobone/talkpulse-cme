@@ -1,7 +1,7 @@
 import { useFetcher, ActionFunctionArgs } from 'react-router-dom';
-import styles from './CommentForm.module.css';
+import styles from './CommentForm.module.scss';
 import auth from '../../lib/auth';
-import { Post } from 'types/types';
+import { Post } from '../../types/types';
 import { useRef } from 'react';
 
 export const action = async (args: ActionFunctionArgs) => {
@@ -42,9 +42,9 @@ const CommentForm = ({ postId }: { postId: string }) => {
   return (
     <div className={styles['comment-form']}>
       <p>CommentForm for - {postId}</p>
-      <h1>leave comment</h1>
+      <h2>leave comment</h2>
       <fetcher.Form method='post' action={`/posts/${postId}/comments`}>
-        <div>
+        <div className={styles['textarea-wrapper']}>
           <textarea name='body' id='body' required ref={textRef}></textarea>
         </div>
         <button type='submit'>Post comment</button>

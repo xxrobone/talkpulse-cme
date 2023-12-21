@@ -23,6 +23,7 @@ import { action as createCommentAction } from './components/CommentForm/CommentF
 import { action as voteAction } from './components/Votes/Votes';
 import { action as deletePostAction } from './components/DeletePost/DeletePost';
 import { action as updatePostAction } from './routes/UpdatePost';
+import { action as updateCommentAction } from './routes/UpdateComment.tsx';
 
 const router = createBrowserRouter([
   {
@@ -73,12 +74,16 @@ const router = createBrowserRouter([
             action: deletePostAction,
           },
           {
+            path: '/posts/:postId/vote',
+            action: voteAction,
+          },
+          {
             path: '/posts/:postId/comments',
             action: createCommentAction,
           },
           {
-            path: '/posts/:postId/vote',
-            action: voteAction,
+            path: '/posts/:postId/comments/:commentId/update',
+            action: updateCommentAction,
           },
         ],
       },

@@ -133,9 +133,12 @@ const SinglePost = () => {
                 .map((comment) => (
                   <Comment
                     key={comment._id}
+                    commentId={comment._id}
                     body={comment.body}
                     author={comment?.author?.username}
                     createdAt={comment.createdAt}
+                    user={user}
+                    postId={post._id}
                   />
                 ))}
             </section>
