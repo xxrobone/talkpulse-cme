@@ -1,4 +1,8 @@
-# TALK PULSE
+# TALK PULSE 
+
+### FRONTEND
+
+backend https://github.com/robonexx/talkpulse_server
 
 #TECH
 React 
