@@ -2,15 +2,13 @@
 .post {
   display: flex;
   flex-direction: column;
-  margin: 0.725rem 0;
   padding: 1rem 0;
-  border-radius: 0.75rem;
   background-color: #121212;
   color: white;
   font-family: 'Roboto', sans-serif;
   width: 100%;
   height: fit-content;
-  min-height: 15rem;
+  height: 100%;
 
   &:hover {
     transition: all 0.3 ease-in-out;
@@ -20,8 +18,8 @@
   }
 
   @media (min-width: 768px) {
-    margin: 0.725rem;
-    padding: 1rem;
+    margin: 0;
+    padding: 1rem 0;
   }
 
   header {
