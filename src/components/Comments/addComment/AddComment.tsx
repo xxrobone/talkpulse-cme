@@ -39,7 +39,6 @@ export const action = async (args: ActionFunctionArgs) => {
   };
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const AddComment: React.FC<AddCommentProps> = ({
   postId,
   setAddAComment,
