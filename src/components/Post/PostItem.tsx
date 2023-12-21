@@ -15,7 +15,7 @@ const PostItem = ({ post }: { post: Post }) => {
       {post && (
         <div className={styles['post-info']}>
           {post.link ? (
-            <Link to={post.link}>
+            <Link to={post.link} target='_blank' rel='noopener noreferrer'>
               <h2>
                 {post.title}
                 <br />
@@ -31,8 +31,8 @@ const PostItem = ({ post }: { post: Post }) => {
             <p>{post.body}</p>
           </section>
           <div className={styles.link}>
-          <Link to={`/posts/${post._id}`}>View full post</Link>
-        </div>
+            <Link to={`/posts/${post._id}`}>View full post</Link>
+          </div>
         </div>
       )}
       {/* {post && (

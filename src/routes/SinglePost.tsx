@@ -95,7 +95,7 @@ const SinglePost = () => {
           </header>
           <div className={styles['post-info']}>
             {post.link ? (
-              <Link to={post.link}>
+              <Link to={post.link} target="_blank" rel="noopener noreferrer">
                 <h2>
                   {post.title}
                   <br />
