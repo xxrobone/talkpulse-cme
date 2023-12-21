@@ -4,7 +4,7 @@ import { HiOutlineChatBubbleLeftRight, HiPencilSquare } from 'react-icons/hi2';
 
 import { Post, User } from '../types/types';
 import Comment from '../components/Comments/Comment/Comment';
-import AddComment from 'components/Comments/AddComment/AddComment';
+import AddComment from '../components/Comments/AddComment/AddComment';
 import Votes from '../components/Votes/Votes';
 import { timeAgo } from '../utils/timeAgo';
 import auth from '../lib/auth';
