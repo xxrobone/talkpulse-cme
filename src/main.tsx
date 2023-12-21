@@ -23,10 +23,6 @@ import { action as voteAction } from './components/Votes/Votes';
 import { action as deletePostAction } from './components/DeletePost/DeletePost';
 import { action as updatePostAction } from './routes/UpdatePost';
 
-/* 
-import Verification from './routes/Verification.tsx';
-*/
-
 const router = createBrowserRouter([
   {
     path: '/',
