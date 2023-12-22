@@ -14,6 +14,7 @@ import UpdateComment from '../../../routes/UpdateComment';
 import Reply from '../Reply';
 
 import styles from './Comment.module.scss';
+import DeleteComment from '../../DeleteComment/DeleteComment';
 
 type ReplyTypes = {
   reply: string;
@@ -61,8 +62,12 @@ const Comment: React.FC<CommentProps> = ({
     <div className={styles.comment}>
       <header className={styles['comment-header']}>
         <p>Author: {author && author}</p>
+        <div>
         {isAuthor && (
           <>
+            <DeleteComment
+              path={`/posts/${postId}/comments/${commentId}/delete`}
+            />
             <span className={styles.icon}>
               <HiPencilSquare onClick={handleUpdateClick} />
             </span>
@@ -71,6 +76,7 @@ const Comment: React.FC<CommentProps> = ({
         <p>
           <time dateTime={createdAt}>{timeAgo(createdAt)}</time>
         </p>
+        </div>
       </header>
       {isUpdateMode ? (
         <UpdateComment body={body} postId={postId} commentId={commentId} />

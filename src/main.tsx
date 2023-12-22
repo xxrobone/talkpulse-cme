@@ -22,6 +22,7 @@ import SinglePost, {
 import { action as createCommentAction } from './components/CommentForm/CommentForm.tsx';
 import { action as voteAction } from './components/Votes/Votes';
 import { action as deletePostAction } from './components/DeletePost/DeletePost';
+import { action as deleteCommentAction } from './components/DeleteComment/DeleteComment';
 import { action as updatePostAction } from './routes/UpdatePost';
 import { action as updateCommentAction } from './routes/UpdateComment.tsx';
 
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
           {
             path: '/posts/:postId/comments/:commentId/update',
             action: updateCommentAction,
+          },
+          {
+            path: '/posts/:postId/comments/:commentId/delete',
+            action: deleteCommentAction,
           },
         ],
       },
