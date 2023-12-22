@@ -41,11 +41,9 @@ const CommentForm = ({ postId }: { postId: string }) => {
   }
   return (
     <div className={styles['comment-form']}>
-      <p>CommentForm for - {postId}</p>
-      <h2>leave comment</h2>
       <fetcher.Form method='post' action={`/posts/${postId}/comments`}>
         <div className={styles['textarea-wrapper']}>
-          <textarea name='body' id='body' required ref={textRef}></textarea>
+          <textarea name='body' id='body' required ref={textRef} placeholder='Write a comment...'></textarea>
         </div>
         <button type='submit'>Post comment</button>
       </fetcher.Form>
