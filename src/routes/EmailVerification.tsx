@@ -1,30 +1,34 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const EmailVerification: React.FC = () => {
   const params = useParams<string>();
   const [isValid, setIsValid] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const navigate = useNavigate();
 
   const verifyEmail = (username: string, token: string) => {
     console.log(
       `username ${username} + token: ${token}, just for testing purpose`
     );
-    const usernameAndToken = {
-      username: username,
-      token: token,
-    };
+
+    console.log('usernameAndToken:', username, token)
     axios
       .post(
-        `${import.meta.env.VITE_SERVER_URL}/verifyAccount`,
-        usernameAndToken
+        `${import.meta.env.VITE_SERVER_URL}/verifyAccount/${username}/${token}`
       )
       .then((resp) => {
-        const responseStatus = resp.data.status;
-        if (!responseStatus) {
-          return;
+        if (resp.status === 200) {
+          setIsValid(true);
+        } else {
+          setError('Could not verify your account: email or token is no longer valid');
         }
-        setIsValid(true);
+      })
+      .catch((error) => {
+        console.error('Error verifying email:', error);
+        setError('Could not verify your account: an error occurred');
       });
   };
 
@@ -34,19 +38,29 @@ const EmailVerification: React.FC = () => {
     }
   }, [params]);
 
+  useEffect(() => {
+    if (isValid) {
+      navigate('/sign-in');
+    }
+  }, [isValid, navigate]);
+
   return (
     <div>
-      {isValid ? (
+      {error ? (
         <div>
-          <p>Email has been verified</p>
-          <br />
-          <Link to='/sign-in'>Go to Sign In</Link>
+          <p>{error}</p>
         </div>
       ) : (
         <div>
-          <p>
-            Could not verify your account: email or token is no longer valid
-          </p>
+          {isValid ? (
+            <div>
+              <p>Email has been verified</p>
+              <br />
+              <Link to='/sign-in'>Go to Sign In</Link>
+            </div>
+          ) : (
+            <p>Verifying...</p>
+          )}
         </div>
       )}
     </div>
