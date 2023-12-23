@@ -25,6 +25,7 @@ import { action as deletePostAction } from './components/DeletePost/DeletePost';
 import { action as deleteCommentAction } from './components/DeleteComment/DeleteComment';
 import { action as updatePostAction } from './routes/UpdatePost';
 import { action as updateCommentAction } from './routes/UpdateComment.tsx';
+import EmailVerification from './routes/EmailVerification.tsx';
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
           auth.signOut();
           return redirect('/');
         },
+      },
+      {
+        path: 'verify-account/:username:token',
+        element: <EmailVerification />,
       },
       {
         element: <RequireAuth />,
