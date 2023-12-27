@@ -12,13 +12,13 @@ import {
 import styles from './Votes.module.scss';
 
 export const action = async (args: ActionFunctionArgs) => {
-  const { entityId } = args.params;
+  const { postId } = args.params;
   
   const formData = await args.request.formData();
   const vote = formData.get('vote');
   const entity = formData.get('entity');
-  console.log('Entity:', entity);
-  const path = `/${entity}/${entityId}/${vote}vote`;
+  console.log('id:', postId);
+  const path = `/${entity}/${postId}/${vote}vote`;
 
   const response = await fetch(import.meta.env.VITE_SERVER_URL + path, {
     method: 'post',
