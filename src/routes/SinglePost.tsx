@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
+import {
+  Link,
+  LoaderFunctionArgs,
+  useLoaderData,
+} from 'react-router-dom';
 import { HiOutlineChatBubbleLeftRight, HiPencilSquare } from 'react-icons/hi2';
 
 import { Post, User } from '../types/types';
@@ -112,7 +116,7 @@ const SinglePost = () => {
             )}
           </div>
           <footer>
-            <Votes post={post} />
+            <Votes entity='post' entityId={post._id} score={post.score} />
             <span className={styles.reply}>
               Add comment <HiPencilSquare onClick={handleAddAComment} />
             </span>
