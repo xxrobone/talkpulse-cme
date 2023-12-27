@@ -116,7 +116,7 @@ const SinglePost = () => {
             )}
           </div>
           <footer>
-            <Votes entity='post' entityId={post._id} score={post.score} />
+            <Votes entity='posts' entityId={post._id} score={post.score} />
             <span className={styles.reply}>
               Add comment <HiPencilSquare onClick={handleAddAComment} />
             </span>
