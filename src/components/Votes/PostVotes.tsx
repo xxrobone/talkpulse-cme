@@ -1,32 +1,27 @@
-// Votes.tsx
-
 import {
   Form,
+  ActionFunctionArgs,
   useLocation,
   redirect,
-  ActionFunctionArgs,
 } from 'react-router-dom';
 import auth from '../../lib/auth';
+import { Post } from '../../types/types';
 import {
   PiArrowFatLineUpFill,
   PiArrowFatLineDownDuotone,
 } from 'react-icons/pi';
+
 import styles from './Votes.module.scss';
 
-interface VotesProps {
-  votePath: string;
-  score: number;
-  isComment: boolean;
-}
-
 export const action = async (args: ActionFunctionArgs) => {
-  const { postId, commentId } = args.params;
+  const { postId } = args.params;
+
   const formData = await args.request.formData();
+
   const vote = formData.get('vote');
 
-  const path = commentId
-    ? `/posts/${postId}/comments/${commentId}/${vote}vote`
-    : `/posts/${postId}/${vote}vote`;
+  const path =
+    vote === 'up' ? `/posts/${postId}/upvote` : `/posts/${postId}/downvote`;
 
   const response = await fetch(import.meta.env.VITE_SERVER_URL + path, {
     method: 'post',
@@ -34,7 +29,6 @@ export const action = async (args: ActionFunctionArgs) => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${auth.getJWT()}`,
     },
-    body: JSON.stringify({ vote }),
   });
 
   if (!response.ok) {
@@ -45,14 +39,12 @@ export const action = async (args: ActionFunctionArgs) => {
   return redirect(formData.get('returnTo')?.toString() || '/');
 };
 
-const PostVotes = ({ votePath, score, isComment }: VotesProps) => {
+const PostVotes = ({ post }: { post: Post }) => {
   const location = useLocation();
 
-  console.log('vote path:', votePath)
-  console.log('location path:', location.pathname)
   return (
     <div className={styles.votes}>
-      <Form method='POST' action={`${location.pathname}${isComment ? votePath : ''}/vote`}>
+      <Form method='POST' action={`/posts/${post._id}/vote`}>
         <input
           type='hidden'
           name='returnTo'
@@ -64,9 +56,8 @@ const PostVotes = ({ votePath, score, isComment }: VotesProps) => {
         </button>
       </Form>
 
-      <span>{score}</span>
-
-      <Form method='POST' action={`${location.pathname}/vote`}>
+      <span>{post.score}</span>
+      <Form method='POST' action={`/posts/${post._id}/vote`}>
         <input
           type='hidden'
           name='returnTo'
@@ -74,6 +65,7 @@ const PostVotes = ({ votePath, score, isComment }: VotesProps) => {
         />
         <input type='hidden' value='down' name='vote' />
         <button type='submit' className={styles['down-btn']}>
+          {' '}
           <PiArrowFatLineDownDuotone />
         </button>
       </Form>
@@ -81,4 +73,4 @@ const PostVotes = ({ votePath, score, isComment }: VotesProps) => {
   );
 };
 
-export default PostVotes
+export default PostVotes;

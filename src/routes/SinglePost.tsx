@@ -6,13 +6,13 @@ import { Post, User } from '../types/types';
 import Comment from '../components/Comments/Comment/Comment';
 /* import AddComment from '../components/AddComment/AddComment'; */
 import CommentForm from '../components/CommentForm/CommentForm';
-import Votes from '../components/Votes/Votes';
 import { timeAgo } from '../utils/timeAgo';
 import auth from '../lib/auth';
 import UpdatePost from '../routes/UpdatePost';
 import DeletePost from '../components/DeletePost/DeletePost';
 
 import styles from './SinglePost.module.scss';
+import PostVotes from '../components/Votes/PostVotes';
 
 type SinglePostLoaderData = {
   post: Post;
@@ -115,15 +115,7 @@ const SinglePost = () => {
             {/* 
               MÅSTE FIXA SÅ JAG KAN SKICKA IN BÅDE POST OCH COMMENT IN I VOTES OCH I COMMENTS
               */}
-            {post ? (
-              <Votes
-                votePath={`posts/${post._id}`}
-                  score={post.score}
-                  isComment={false}
-              />
-            ) : (
-              <div></div>
-            )}
+            {post ? <PostVotes post={post} /> : <div></div>}
             <span className={styles.reply}>
               Add comment <HiPencilSquare onClick={handleAddAComment} />
             </span>

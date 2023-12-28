@@ -15,7 +15,7 @@ import Reply from '../Reply';
 
 import styles from './Comment.module.scss';
 import DeleteComment from '../../DeleteComment/DeleteComment';
-import Votes from '../../Votes/Votes';
+import CommentVotes from '../../Votes/CommentVotes';
 
 type ReplyTypes = {
   reply: string;
@@ -90,7 +90,7 @@ const Comment: React.FC<CommentProps> = ({
       )}
       <footer>
       {commentId ? (
-          <Votes isComment={true} votePath={`/comments/${commentId}`} score={score} />
+          <CommentVotes commentId={commentId} postId={postId} score={score} />
             ) : (
               <div></div>
             )}
