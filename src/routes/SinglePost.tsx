@@ -1,18 +1,17 @@
 import { useState } from 'react';
 import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
-import { HiOutlineChatBubbleLeftRight, HiPencilSquare } from 'react-icons/hi2';
+import { HiPencilSquare } from 'react-icons/hi2';
 
 import { Post, User } from '../types/types';
 import Comment from '../components/Comments/Comment/Comment';
-/* import AddComment from '../components/AddComment/AddComment'; */
 import CommentForm from '../components/CommentForm/CommentForm';
 import { timeAgo } from '../utils/timeAgo';
 import auth from '../lib/auth';
 import UpdatePost from '../routes/UpdatePost';
 import DeletePost from '../components/DeletePost/DeletePost';
+import PostVotes from '../components/Votes/PostVotes';
 
 import styles from './SinglePost.module.scss';
-import PostVotes from '../components/Votes/PostVotes';
 
 type SinglePostLoaderData = {
   post: Post;
@@ -45,13 +44,13 @@ export const loader = async (args: LoaderFunctionArgs) => {
     userResponse.json(),
   ]);
 
-  console.log(userData);
+ /*  console.log(userData); */
 
   return { post: postData, user: userData };
 };
 
 const SinglePost = () => {
-  const [showComments, setShowComments] = useState<boolean>(false);
+ /*  const [showComments, setShowComments] = useState<boolean>(false); */
   const [addAComment, setAddAComment] = useState<boolean>(false);
   const [isUpdateMode, setIsUpdateMode] = useState<boolean>(false);
 
@@ -59,9 +58,9 @@ const SinglePost = () => {
   const isAuthor =
     auth.isSignedIn() && user && post.author?.username === user.username;
 
-  const handleShowComments = () => {
+  /* const handleShowComments = () => {
     setShowComments((prev) => !prev);
-  };
+  }; */
 
   const handleAddAComment = () => {
     setAddAComment((prev) => !prev);
@@ -119,17 +118,16 @@ const SinglePost = () => {
             <span className={styles.reply}>
               Add comment <HiPencilSquare onClick={handleAddAComment} />
             </span>
-            <span className={styles.comments}>Check comments: </span>{' '}
-            <p className={styles.icon}>
+            {/* <span className={styles.comments}>Check comments: </span>{' '} */}
+           {/*  <p className={styles.icon}>
               <HiOutlineChatBubbleLeftRight onClick={handleShowComments} />
-            </p>
+            </p> */}
           </footer>
           {addAComment ? <CommentForm postId={post._id} /> : <div></div>}
-          {showComments ? (
+            {/*  {showComments ? ( */}
+            
             <section className={styles['comments-list']}>
-              {/* 
-              MÅSTE FIXA SÅ JAG KAN SKICKA IN BÅDE POST OCH COMMENT IN I VOTES OCH I COMMENTS
-              */}
+            <h2>Comments:</h2>
               {post.comments
                 ?.slice()
                 .sort(
@@ -151,9 +149,9 @@ const SinglePost = () => {
                   />
                 ))}
             </section>
-          ) : (
+         {/*  ) : (
             <div></div>
-          )}
+          )} */}
         </article>
       )}
     </>
