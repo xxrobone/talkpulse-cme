@@ -61,8 +61,6 @@ const Comment: React.FC<CommentProps> = ({
     setIsUpdateMode((prev) => !prev);
   };
 
-  console.log(score)
-
   return (
     <div className={styles.comment}>
       <header className={styles['comment-header']}>
