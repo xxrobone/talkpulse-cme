@@ -29,7 +29,7 @@ import EmailVerification from './routes/EmailVerification.tsx';
 import ForgotPassword, {
   action as forgotPasswordAction,
 } from './routes/ForgotPassword.tsx';
-import ResetPassword from './routes/ResetPassword.tsx';
+import ResetPassword, {action as resetPasswordAction} from './routes/ResetPassword.tsx';
 
 const router = createBrowserRouter([
   {
@@ -73,7 +73,8 @@ const router = createBrowserRouter([
         element: <ForgotPassword />,
       },
       {
-        path: 'reset-password',
+        path: 'reset-password/:email/:token',
+        action: resetPasswordAction,
         element: <ResetPassword />,
       },
       {

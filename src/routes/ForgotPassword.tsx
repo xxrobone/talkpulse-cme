@@ -31,7 +31,7 @@ export const action = async (args: ActionFunctionArgs) => {
     }
 
     // If you want to redirect to the reset password page, uncomment the following line
-    return redirect(`/reset-password`);
+    return redirect(`/`);
   } catch (error) {
     console.error('Error during password reset request:', error);
     return { message: 'An error occurred while processing your request' };
