@@ -20,11 +20,12 @@ import SinglePost, {
 } from './routes/SinglePost.tsx';
 /* import { action as createCommentAction } from './components/AddComment/AddComment.tsx'; */
 import { action as createCommentAction } from './components/CommentForm/CommentForm.tsx';
-import { action as voteAction } from './components/Votes/Votes';
 import { action as deletePostAction } from './components/DeletePost/DeletePost';
 import { action as deleteCommentAction } from './components/DeleteComment/DeleteComment';
 import { action as updatePostAction } from './routes/UpdatePost';
 import { action as updateCommentAction } from './routes/UpdateComment.tsx';
+import { action as postVoteAction } from './components/Votes/PostVotes';
+import { action as commentVoteAction } from './components/Votes/CommentVotes';
 import EmailVerification from './routes/EmailVerification.tsx';
 import ForgotPassword, {
   action as forgotPasswordAction,
@@ -95,7 +96,11 @@ const router = createBrowserRouter([
           },
           {
             path: '/posts/:postId/vote',
-            action: voteAction,
+            action: postVoteAction,
+          },
+          {
+            path: '/posts/:postId/comments/:commentId/vote',
+            action: commentVoteAction,
           },
           {
             path: '/posts/:postId/comments',
