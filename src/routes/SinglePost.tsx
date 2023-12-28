@@ -111,9 +111,15 @@ const SinglePost = () => {
               </section>
             )}
           </div>
-            <footer>
+          <footer>
+            {/* 
+              MÅSTE FIXA SÅ JAG KAN SKICKA IN BÅDE POST OCH COMMENT IN I VOTES OCH I COMMENTS
+              */}
             {post ? (
-                <Votes entity='posts' entityId={post._id || ''} score={post.score} />
+              <Votes
+                votePath={`posts/${post._id}`}
+                score={post.score}
+              />
             ) : (
               <div></div>
             )}
@@ -128,6 +134,9 @@ const SinglePost = () => {
           {addAComment ? <CommentForm postId={post._id} /> : <div></div>}
           {showComments ? (
             <section className={styles['comments-list']}>
+              {/* 
+              MÅSTE FIXA SÅ JAG KAN SKICKA IN BÅDE POST OCH COMMENT IN I VOTES OCH I COMMENTS
+              */}
               {post.comments
                 ?.slice()
                 .sort(
@@ -135,6 +144,7 @@ const SinglePost = () => {
                     new Date(b.createdAt).getTime() -
                     new Date(a.createdAt).getTime()
                 )
+
                 .map((comment) => (
                   <Comment
                     key={comment._id}
@@ -144,6 +154,7 @@ const SinglePost = () => {
                     createdAt={comment.createdAt}
                     user={user}
                     postId={post._id}
+                    score={comment.score}
                   />
                 ))}
             </section>

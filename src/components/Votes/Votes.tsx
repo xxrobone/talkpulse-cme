@@ -1,3 +1,5 @@
+// Votes.tsx
+
 import {
   Form,
   useLocation,
@@ -11,14 +13,19 @@ import {
 } from 'react-icons/pi';
 import styles from './Votes.module.scss';
 
+interface VotesProps {
+  votePath: string;
+  score: number;
+}
+
 export const action = async (args: ActionFunctionArgs) => {
-  const { postId } = args.params;
-  
+  const { postId, commentId } = args.params;
   const formData = await args.request.formData();
   const vote = formData.get('vote');
-  const entity = formData.get('entity');
-  console.log('id:', postId);
-  const path = `/${entity}/${postId}/${vote}vote`;
+
+  const path = commentId
+    ? `/posts/${postId}/comments/${commentId}/${vote}vote`
+    : `/posts/${postId}/${vote}vote`;
 
   const response = await fetch(import.meta.env.VITE_SERVER_URL + path, {
     method: 'post',
@@ -37,19 +44,13 @@ export const action = async (args: ActionFunctionArgs) => {
   return redirect(formData.get('returnTo')?.toString() || '/');
 };
 
-interface VotesProps {
-  entity: 'posts' | 'comments';
-  entityId: string;
-  score: number;
-}
-
-const Votes = ({ entity, entityId, score }: VotesProps) => {
+const Votes = ({ votePath, score }: VotesProps) => {
   const location = useLocation();
 
   return (
     <div className={styles.votes}>
-      <Form method='POST' action={`/${entity}/${entityId}/vote`}>
-        <input type='hidden' name='entity' value={entity} />
+      <Form method='POST' action={`/vote`}>
+        {/*  <input type='hidden' name='entity' value='votes' /> */}
         <input
           type='hidden'
           name='returnTo'
@@ -63,8 +64,8 @@ const Votes = ({ entity, entityId, score }: VotesProps) => {
 
       <span>{score}</span>
 
-      <Form method='POST' action={`/${entity}/${entityId}/vote`}>
-        <input type='hidden' name='entity' value={entity} />
+      <Form method='POST' action={`/vote`}>
+        {/*   <input type='hidden' name='entity' value='votes' /> */}
         <input
           type='hidden'
           name='returnTo'
