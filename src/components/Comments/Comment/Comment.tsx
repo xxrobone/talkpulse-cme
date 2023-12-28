@@ -15,7 +15,7 @@ import Reply from '../Reply';
 
 import styles from './Comment.module.scss';
 import DeleteComment from '../../DeleteComment/DeleteComment';
-/* import Votes from '../../Votes/Votes'; */
+import Votes from '../../Votes/Votes';
 
 type ReplyTypes = {
   reply: string;
@@ -89,11 +89,11 @@ const Comment: React.FC<CommentProps> = ({
         <p className={styles.text}>{body}</p>
       )}
       <footer>
-      {/* {commentId ? (
-                 <Votes votePath={`/posts/${postId}/comments/${commentId}`} score={score} />
+      {commentId ? (
+          <Votes isComment={true} votePath={`/comments/${commentId}`} score={score} />
             ) : (
               <div></div>
-            )} */}
+            )}
         <span className={styles.reply}>reply </span>
         <span className={styles.icon} onClick={toggleReplies}>
           <HiOutlineChatBubbleLeftRight />

@@ -16,6 +16,7 @@ import styles from './Votes.module.scss';
 interface VotesProps {
   votePath: string;
   score: number;
+  isComment: boolean;
 }
 
 export const action = async (args: ActionFunctionArgs) => {
@@ -44,13 +45,14 @@ export const action = async (args: ActionFunctionArgs) => {
   return redirect(formData.get('returnTo')?.toString() || '/');
 };
 
-const Votes = ({ votePath, score }: VotesProps) => {
+const PostVotes = ({ votePath, score, isComment }: VotesProps) => {
   const location = useLocation();
 
+  console.log('vote path:', votePath)
+  console.log('location path:', location.pathname)
   return (
     <div className={styles.votes}>
-      <Form method='POST' action={`/vote`}>
-        {/*  <input type='hidden' name='entity' value='votes' /> */}
+      <Form method='POST' action={`${location.pathname}${isComment ? votePath : ''}/vote`}>
         <input
           type='hidden'
           name='returnTo'
@@ -64,8 +66,7 @@ const Votes = ({ votePath, score }: VotesProps) => {
 
       <span>{score}</span>
 
-      <Form method='POST' action={`/vote`}>
-        {/*   <input type='hidden' name='entity' value='votes' /> */}
+      <Form method='POST' action={`${location.pathname}/vote`}>
         <input
           type='hidden'
           name='returnTo'
@@ -80,4 +81,4 @@ const Votes = ({ votePath, score }: VotesProps) => {
   );
 };
 
-export default Votes;
+export default PostVotes

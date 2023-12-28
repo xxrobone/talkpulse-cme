@@ -118,7 +118,8 @@ const SinglePost = () => {
             {post ? (
               <Votes
                 votePath={`posts/${post._id}`}
-                score={post.score}
+                  score={post.score}
+                  isComment={false}
               />
             ) : (
               <div></div>

@@ -83,10 +83,10 @@ const router = createBrowserRouter([
             path: '/posts/:postId/vote',
             action: voteAction,
           },
-          /* {
+          {
             path: '/posts/:postId/comments/:commentId/vote',
             action: voteAction,
-          }, */
+          },
           {
             path: '/posts/:postId/comments',
             action: createCommentAction,
