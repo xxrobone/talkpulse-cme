@@ -16,15 +16,13 @@ export const action = async (args: ActionFunctionArgs) => {
   try {
     const { request } = args;
     const formData = await request.formData();
-    const postData = Object.fromEntries(formData.entries());
 
     const response = await fetch(import.meta.env.VITE_SERVER_URL + '/posts', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
         Authorization: `Bearer ${auth.getJWT()}`,
       },
-      body: JSON.stringify(postData),
+      body: formData,
     });
 
     if (!response.ok) {
