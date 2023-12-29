@@ -8,6 +8,7 @@ import {
 import auth from '../lib/auth';
 import { ActionData } from '../types/types';
 import Input from '../components/Input';
+import {RiImageAddFill} from 'react-icons/ri'
 
 import styles from './CreatePost.module.scss';
 import TextArea from '../components/TextArea';
@@ -75,6 +76,16 @@ const CreatePost = () => {
           error={false}
           /*  onChange={onChangeHandler} */
           required={false}
+        />
+         <label htmlFor='image' className={styles['image-label']}>
+          <RiImageAddFill className={styles.icon} /> Image (optional)
+        </label>
+        <input
+          className={styles['input-image-wrapper']}
+          type='file'
+          name='image'
+          id='image'
+          accept='image/*'
         />
         <label htmlFor='body'>Content</label>
         <TextArea
