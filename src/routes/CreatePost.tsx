@@ -18,6 +18,10 @@ export const action = async (args: ActionFunctionArgs) => {
     const { request } = args;
     const formData = await request.formData();
 
+    for (const pair of formData.entries()) {
+      console.log(pair[0] + ': ' + pair[1]);
+    }
+
     const response = await fetch(import.meta.env.VITE_SERVER_URL + '/posts', {
       method: 'POST',
       headers: {
