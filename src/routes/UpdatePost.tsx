@@ -14,32 +14,6 @@ type UpdatePostLoaderData = {
   user: User;
 };
 
-const convertFileToBase64 = async (file: File | string | null): Promise<string | null> => {
-  if (!file) {
-    return null;
-  }
-
-  // If the file is a string, assume it's already a base64 string
-  if (typeof file === 'string') {
-    return file;
-  }
-
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      // Extract only the base64 content without the data URL prefix
-      const base64Content = (reader.result as string).split(',')[1];
-      resolve(base64Content);
-    };
-
-    reader.onerror = () => {
-      reject(null);
-    };
-
-    reader.readAsDataURL(file);
-  });
-};
 
 export const action = async (args: ActionFunctionArgs) => {
   try {
@@ -47,25 +21,32 @@ export const action = async (args: ActionFunctionArgs) => {
     const { postId } = params;
     const formData = await request.formData();
 
-    const imageInput = formData.get('image') as File | null;
-    const imageBase64 = await convertFileToBase64(imageInput);
+    const imageInput = formData.get('image') as FileList | null;
 
-    const postData = {
+    if (imageInput) {
+      const imageFile = imageInput[0];
+
+      // Log the type of imageFile
+      console.log('Type of imageFile:', typeof imageFile);
+    } else {
+      console.log('No image added to FormData.');
+    }
+
+/*     const postData = {
       title: formData.get('title') as string,
       link: formData.get('link') as string,
       body: formData.get('body') as string,
-      image: imageBase64,
-    };
+      image: imageInput as File,
+    }; */
 
     const response = await fetch(
       import.meta.env.VITE_SERVER_URL + `/posts/${postId}/update`,
       {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json',
           Authorization: `Bearer ${auth.getJWT()}`,
         },
-        body: JSON.stringify(postData),
+        body: formData,
       }
     );
 
@@ -108,9 +89,15 @@ const UpdatePost: React.FC<UpdatePostLoaderData> = ({ post, user }) => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files && files.length > 0) {
-      setPostData({ ...postData, image: files[0] });
+      setPostData({
+        ...postData,
+        image: files[0]
+      });
     }
   };
+  
+  // Use postData directly in the console.log statement
+  console.log(postData);
 
   return (
     <div className={styles['update-post']}>
@@ -119,6 +106,7 @@ const UpdatePost: React.FC<UpdatePostLoaderData> = ({ post, user }) => {
         method='PUT'
         action={`/posts/${post._id}/update`}
         className={styles['form']}
+        encType='multipart/form-data'
       >
         {error && (
           <p>
