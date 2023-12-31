@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Post } from '../../types/types';
 import styles from './Post.module.scss';
 import { timeAgo } from '../../utils/timeAgo';
+import PostVotes from '../Votes/PostVotes';
 
 const PostItem = ({ post }: { post: Post }) => {
   return (
@@ -35,6 +36,7 @@ const PostItem = ({ post }: { post: Post }) => {
           </div>
         </div>
       )}
+      <footer>{post ? <PostVotes post={post} /> : <div></div>}</footer>
     </div>
   );
 };

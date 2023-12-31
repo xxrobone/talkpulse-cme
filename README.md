@@ -25,12 +25,16 @@ IMAGES!
 Add images [x]
 Update images [x]
 
-Add redirects to:
-comments:   []
-posts:      []
-delete:     []
+Add redirects /close functions to:
+comments:   [x]
+posts:      [x]
+delete:     [x]
 
-Styling fixes []
+Styling fixes update forms [x]
+
+Future features // 
+
+User logout after token expires or refresh token activation []
 
 Future features // 
 SUBREDDITS!
@@ -43,3 +47,6 @@ REPLIES!
 ADD model:              []
 ADD controllers:        []
 ADD routing:            []
+
+USER!
+Profile page /settings page []

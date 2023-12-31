@@ -9,12 +9,3 @@ const RequireAuth = () => {
 };
 
 export default RequireAuth;
-
-/* 
-const RequireAuth = () => {
-  if (!auth.isSignedIn()) {
-    return <SignIn />
-  }
-  return <Outlet />;
-};
-*/
