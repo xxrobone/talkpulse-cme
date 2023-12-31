@@ -46,7 +46,7 @@ const Comment: React.FC<CommentProps> = ({
   user,
   postId,
   commentId,
-  score
+  score,
 }) => {
   const [showReplies, setShowReplies] = useState(false);
   const [isUpdateMode, setIsUpdateMode] = useState(false);
@@ -61,37 +61,46 @@ const Comment: React.FC<CommentProps> = ({
     setIsUpdateMode((prev) => !prev);
   };
 
+  const handleCloseUpdate = () => {
+    setIsUpdateMode(false);
+  };
+
   return (
     <div className={styles.comment}>
       <header className={styles['comment-header']}>
         <p>Author: {author && author}</p>
         <div>
-        {isAuthor && (
-          <>
-            <DeleteComment
-              path={`/posts/${postId}/comments/${commentId}/delete`}
-            />
-            <span className={styles.icon}>
-              <HiPencilSquare onClick={handleUpdateClick} />
-            </span>
-          </>
-        )}
-        <p>
-          <time dateTime={createdAt}>{timeAgo(createdAt)}</time>
-        </p>
+          {isAuthor && (
+            <>
+              <DeleteComment
+                path={`/posts/${postId}/comments/${commentId}/delete`}
+              />
+              <span className={styles.icon}>
+                <HiPencilSquare onClick={handleUpdateClick} />
+              </span>
+            </>
+          )}
+          <p>
+            <time dateTime={createdAt}>{timeAgo(createdAt)}</time>
+          </p>
         </div>
       </header>
       {isUpdateMode ? (
-        <UpdateComment body={body} postId={postId} commentId={commentId} />
+        <UpdateComment
+          body={body}
+          postId={postId}
+          commentId={commentId}
+          onSubmit={handleCloseUpdate}
+        />
       ) : (
         <p className={styles.text}>{body}</p>
       )}
       <footer>
-      {commentId ? (
+        {commentId ? (
           <CommentVotes commentId={commentId} postId={postId} score={score} />
-            ) : (
-              <div></div>
-            )}
+        ) : (
+          <div></div>
+        )}
         <span className={styles.reply}>reply </span>
         <span className={styles.icon} onClick={toggleReplies}>
           <HiOutlineChatBubbleLeftRight />

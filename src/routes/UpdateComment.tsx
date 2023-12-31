@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
-import { ActionFunctionArgs, Form, useActionData, redirect } from 'react-router-dom';
+import {
+  ActionFunctionArgs,
+  Form,
+  useActionData,
+  redirect,
+} from 'react-router-dom';
 import auth from '../lib/auth';
 import { ActionData } from '../types/types';
 import styles from './UpdateComment.module.scss';
@@ -15,7 +20,7 @@ export const action = async (args: ActionFunctionArgs) => {
     const { request, params } = args;
     const { postId, commentId } = params;
     const formData = await request.formData();
-    const commentBody = formData.get('body') as string; 
+    const commentBody = formData.get('body') as string;
 
     const response = await fetch(
       import.meta.env.VITE_SERVER_URL +
@@ -43,7 +48,9 @@ export const action = async (args: ActionFunctionArgs) => {
   }
 };
 
-const UpdateComment: React.FC<UpdateCommentLoaderData> = ({ body, commentId, postId }) => {
+const UpdateComment: React.FC<
+  UpdateCommentLoaderData & { onSubmit: () => void }
+> = ({ body, commentId, postId, onSubmit }) => {
   const error = useActionData() as ActionData;
 
   const [commentData, setCommentData] = useState({
@@ -55,6 +62,12 @@ const UpdateComment: React.FC<UpdateCommentLoaderData> = ({ body, commentId, pos
       body: body || '',
     });
   }, [body]);
+
+  const handleClose = () => {
+    setTimeout(() => {
+      onSubmit();
+    }, 1000);
+  };
 
   return (
     <div className={styles['update-comment']}>
@@ -76,11 +89,15 @@ const UpdateComment: React.FC<UpdateCommentLoaderData> = ({ body, commentId, pos
             id='body'
             placeholder='Edit your comment'
             value={commentData.body}
-            onChange={(e) => setCommentData({ ...commentData, body: e.target.value })}
+            onChange={(e) =>
+              setCommentData({ ...commentData, body: e.target.value })
+            }
           />
         </div>
         <span className={styles.icon}>
-          <button type='submit'>Update comment</button>
+          <button type='submit' onClick={handleClose}>
+            Update comment
+          </button>
         </span>
       </Form>
     </div>
