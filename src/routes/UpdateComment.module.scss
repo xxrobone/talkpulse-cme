@@ -1,106 +1,85 @@
+$primaryColor: #dadada;
+$backgroundColor: #000000;
+$borderRadius: 5px;
+
 .update-comment {
+  width: 100%;
+  display: block;
+  background-color: #121212;
+  font-family: monospace;
+
+  .form {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
     width: 100%;
-    display: grid;
-    place-content: center;
-    background-color: #121212;
+    height: 100%;
+    background-color: $backgroundColor;
+    border: 1px solid #dddddd3f;
+    border-radius: $borderRadius;
+    border: none;
+    outline: none;
     font-family: monospace;
-  
-    h2 {
+    font-size: 0.8rem;
+    color: $primaryColor;
+
+    @media (min-width: 768px) {
+      width: 100%;
+    }
+
+    label {
+      color: #f8f8f8;
+    }
+
+    .textarea-wrapper {
       position: relative;
       width: 100%;
-      margin: 1rem 0;
-      color: white;
-      font-size: 1.25rem;
-    }
-  
-    .form {
-      width: 100%;
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.692);
-      backdrop-filter: blur(20px);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      color: #fff;
-      border-radius: 5px;
-      padding: 1rem 1.5rem;
-      margin: 0.5rem 0;
-  
-      @media (min-width: 768px) {
-        width:100%;
-      }
-  
-      label {
-        color: #f8f8f8;
-      }
-  
-      .input-wrapper {
-        position: relative;
+      height: 5rem;
+      margin: 0.75rem 0;
+
+      textarea {
         width: 100%;
-        height: 3rem;
-        margin: 0.75rem 0;
-  
-        input {
-          width: 100%;
-          height: 100%;
-          background: transparent;
-          border: none;
-          outline: none;
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          border-radius: 5px;
-          font-family: monospace;
-          font-size: 1rem;
-          color: #fff;
-          padding: 1.25rem 3rem 1.25rem 1.25rem;
-  
-          &::placeholder {
-            color: #888;
-          }
-        }
-      }
-  
-      .textarea-wrapper {
-        position: relative;
-        width: 100%;
-        height: 5rem;
-        margin: 0.75rem 0;
-  
-        textarea {
-          width: 100%;
-          height: 100%;
-          background: transparent;
-          border: none;
-          outline: none;
-          border: 2px solid rgba(255, 255, 255, 0.2);
-          border-radius: 0.75rem;
-          font-family: monospace;
-          font-size: 1rem;
-          color: #fff;
-          padding: 1.25rem 3rem 1.25rem 1.25rem;
-  
-          &::placeholder {
-            color: #888;
-          }
-        }
-      }
-  
-      button {
-        width: 100%;
-        height: 3rem;
+        height: 100%;
         background: transparent;
         border: none;
         outline: none;
-        border: 2px solid rgba(255, 255, 255, 0.2);
-        border-radius: 2.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: $borderRadius;
         font-family: monospace;
         font-size: 1rem;
         color: #fff;
-        padding: 0.75rem 3rem;
-        transition: all 0.3s ease;
-  
-        &:hover {
-          cursor: pointer;
-          background: rgba(255, 255, 255, 0.2);
+        padding: 0.5rem;
+
+        &::placeholder {
+          color: #888;
         }
       }
     }
+
+    button {
+      display: flex;
+      align-items: center;
+      position: relative;
+      width: 100%;
+      height: fit-content;
+      background: $backgroundColor;
+      border: none;
+      outline: none;
+      border: 1px solid rgba(255, 255, 255, 0.205);
+      border-radius: 5px;
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: #fff;
+      padding: 0.5rem 1.5rem;
+      transition: all 0.3s ease;
+
+      @media (min-width: 768px) {
+        width: fit-content;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background: rgb(22, 22, 22);
+      }
+    }
   }
-  
+}

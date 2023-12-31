@@ -2,7 +2,6 @@ $primaryColor: #dadada;
 $backgroundColor: #000000;
 $borderRadius: 8px;
 
-
 .post {
   position: relative;
   margin: 0.725rem;
@@ -11,11 +10,11 @@ $borderRadius: 8px;
   height: fit-content;
   min-height: 15rem;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   border-radius: 5px;
   background-color: #121212;
   color: white;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   transition: background 0.4s ease-out;
 
   @media (min-width: 768px) {
@@ -23,107 +22,116 @@ $borderRadius: 8px;
     width: 60vw;
   }
 
-    &:hover {
-      background-color: #282828;
-      cursor: pointer;
-    }
+  &:hover {
+    background-color: #282828;
+    cursor: pointer;
+  }
 
+  .post-header {
+    padding: 0 0.5rem;
+    height: 3rem;
+    background-color: black;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: monospace;
 
-    .post-header {
-      padding: 0 0.5rem;
-      height: 3rem;
-      background-color: black;
-      border-radius: 5px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-family: monospace;
-  
-      p {
-        color: #dfdfdf;
-        span {
-          color: #888;
-        }
-      }
-
-      div {
-        display: flex;
-        align-items: center;
-        .icon {
-          padding-right: 0.75rem;
-          color: #dfdfdf;
-  
-          &:hover {
-            cursor: pointer;
-            color: #fff;
-            filter: drop-shadow(2px 2px 5px rgba(255,255,255,0225));
-          }
-        }
-      }       
-  
-      time {
+    p {
+      color: #dfdfdf;
+      span {
         color: #888;
       }
     }
 
-    .post-info {
+    div {
       display: flex;
-      flex-direction: column;
-      padding: 0.5rem;
-  
-      a {
-        padding: 1rem 0;
-        text-decoration: none;
-        h2 {
-          color: #F96716;
-          font-size: 1.25rem;
-          font-weight: 800;
-          span {
-            color: rgb(69, 194, 194);
-            font-weight: 200;
-          }
+      align-items: center;
+      .icon {
+        padding-right: 0.75rem;
+        color: #dfdfdf;
+
+        &:hover {
+          cursor: pointer;
+          color: #fff;
+          filter: drop-shadow(2px 2px 5px rgba(255, 255, 255, 0225));
         }
       }
+    }
 
+    time {
+      color: #888;
+    }
+  }
+
+  .post-info {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+
+    a {
+      padding: 1rem 0;
+      text-decoration: none;
       h2 {
-        color: #F96716;
+        color: #f96716;
         font-size: 1.25rem;
         font-weight: 800;
+        span {
+          color: rgb(69, 194, 194);
+          font-weight: 200;
+        }
       }
-  
-     
+    }
+
+    h2 {
+      color: #f96716;
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
     .post-body {
-      padding: 1rem 0;    
+      padding: 1rem 0;
 
       p {
         color: #dfd9d9;
       }
     }
+  }
+
+  footer {
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    font-family: monospace;
+
+    .comments {
+      margin-left: 1rem;
+      color: #888;
     }
 
-    footer {
+    .icon {
+      margin: 0 0.5rem;
+    }
+    .add-comment {
       display: flex;
       align-items: center;
-      font-size: 0.75rem;
-      font-family: monospace;
+      margin: 0 0.5rem 0 1rem;
+      color: #888;
 
-      .comments {
-        margin-left: 1rem;
-        color: #888;
+      &:hover {
+        color: $primaryColor;
+        cursor: pointer;
       }
-  
-      .icon {
-        margin: 0 0.5rem;
+
+      .open,
+      .close {
+        margin-left: 0.5rem;
       }
-      .reply {
-        margin: 0 0.5rem 0 1rem;
-        color: #888;
-  
-          &:hover {
-            color: $primaryColor;
-            cursor: pointer;
-        }
+
+      .close {
+        color: tomato;
       }
+    }
   }
   .comments-list {
     margin: 1rem 0;

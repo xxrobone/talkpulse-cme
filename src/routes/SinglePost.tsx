@@ -48,13 +48,13 @@ export const loader = async (args: LoaderFunctionArgs) => {
     userResponse.json(),
   ]);
 
- /*  console.log(userData); */
+  /*  console.log(userData); */
 
   return { post: postData, user: userData };
 };
 
 const SinglePost = () => {
- /*  const [showComments, setShowComments] = useState<boolean>(false); */
+  /*  const [showComments, setShowComments] = useState<boolean>(false); */
   const [addAComment, setAddAComment] = useState<boolean>(false);
   const [isUpdateMode, setIsUpdateMode] = useState<boolean>(false);
 
@@ -66,9 +66,9 @@ const SinglePost = () => {
     setShowComments((prev) => !prev);
   }; */
 
-  const handleAddAComment = () => {
+/*   const handleAddAComment = () => {
     setAddAComment((prev) => !prev);
-  };
+  }; */
 
   const handleCommentSubmit = () => {
     setAddAComment(false);
@@ -115,11 +115,11 @@ const SinglePost = () => {
               </Link>
             ) : (
               <h2>{post.title}</h2>
-              )}
-              {/* 
+            )}
+            {/* 
               IMAGE WOULD GO HERE - IMAGE CONTAINER
               */}
-               {post.image && <ImageContainer imageData={post.image} />}
+            {post.image && <ImageContainer imageData={post.image} />}
             {post.body && (
               <section className={styles['post-body']}>
                 <p>{post.body}</p>
@@ -131,41 +131,55 @@ const SinglePost = () => {
               MÅSTE FIXA SÅ JAG KAN SKICKA IN BÅDE POST OCH COMMENT IN I VOTES OCH I COMMENTS
               */}
             {post ? <PostVotes post={post} /> : <div></div>}
-            <span className={styles.reply}>
-              Add comment <HiPencilSquare onClick={handleAddAComment} />
+            <span className={styles['add-comment']}>
+              {addAComment ? (
+                <>
+                  Close comment
+                    <HiPencilSquare onClick={() => setAddAComment(false)} className={styles.close} />
+                </>
+              ) : (
+                <>
+                  Add comment{' '}
+                  <HiPencilSquare onClick={() => setAddAComment(true)} className={styles.open} />
+                </>
+              )}
             </span>
             {/* <span className={styles.comments}>Check comments: </span>{' '} */}
-           {/*  <p className={styles.icon}>
+            {/*  <p className={styles.icon}>
               <HiOutlineChatBubbleLeftRight onClick={handleShowComments} />
             </p> */}
           </footer>
-          {addAComment ? <CommentForm postId={post._id} onSubmit={handleCommentSubmit} /> : <div></div>}
-            {/*  {showComments ? ( */}
-            
-            <section className={styles['comments-list']}>
-            <h2>Comments:</h2>
-              {post.comments
-                ?.slice()
-                .sort(
-                  (a, b) =>
-                    new Date(b.createdAt).getTime() -
-                    new Date(a.createdAt).getTime()
-                )
+          {addAComment ? (
+            <CommentForm postId={post._id} onSubmit={handleCommentSubmit} />
+          ) : (
+            <div></div>
+          )}
+          {/*  {showComments ? ( */}
 
-                .map((comment) => (
-                  <Comment
-                    key={comment._id}
-                    commentId={comment._id}
-                    body={comment.body}
-                    author={comment?.author?.username}
-                    createdAt={comment.createdAt}
-                    user={user}
-                    postId={post._id}
-                    score={comment.score}
-                  />
-                ))}
-            </section>
-         {/*  ) : (
+          <section className={styles['comments-list']}>
+            <h2>Comments:</h2>
+            {post.comments
+              ?.slice()
+              .sort(
+                (a, b) =>
+                  new Date(b.createdAt).getTime() -
+                  new Date(a.createdAt).getTime()
+              )
+
+              .map((comment) => (
+                <Comment
+                  key={comment._id}
+                  commentId={comment._id}
+                  body={comment.body}
+                  author={comment?.author?.username}
+                  createdAt={comment.createdAt}
+                  user={user}
+                  postId={post._id}
+                  score={comment.score}
+                />
+              ))}
+          </section>
+          {/*  ) : (
             <div></div>
           )} */}
         </article>

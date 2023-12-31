@@ -49,8 +49,8 @@ export const action = async (args: ActionFunctionArgs) => {
 };
 
 const UpdateComment: React.FC<
-  UpdateCommentLoaderData & { onSubmit: () => void }
-> = ({ body, commentId, postId, onSubmit }) => {
+  UpdateCommentLoaderData & { closeUpdate: () => void }
+> = ({ body, commentId, postId, closeUpdate }) => {
   const error = useActionData() as ActionData;
 
   const [commentData, setCommentData] = useState({
@@ -65,13 +65,12 @@ const UpdateComment: React.FC<
 
   const handleClose = () => {
     setTimeout(() => {
-      onSubmit();
+      closeUpdate();
     }, 1000);
   };
 
   return (
     <div className={styles['update-comment']}>
-      <h2>Update Comment</h2>
       <Form
         method='PUT'
         action={`/posts/${postId}/comments/${commentId}/update`}
@@ -82,7 +81,7 @@ const UpdateComment: React.FC<
             <b>Error: </b> {error.message}
           </p>
         )}
-        <label htmlFor='body'>Content</label>
+        <label htmlFor='body'>Update Comment</label>
         <div className={styles['textarea-wrapper']}>
           <textarea
             name='body'

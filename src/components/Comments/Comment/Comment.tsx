@@ -5,13 +5,13 @@ import { useState } from 'react';
   PiArrowFatLineUpFill,
   PiArrowFatLineDownDuotone,
 } from 'react-icons/pi'; */
-import { HiOutlineChatBubbleLeftRight, HiPencilSquare } from 'react-icons/hi2';
+import { HiPencilSquare } from 'react-icons/hi2';
 
 import { timeAgo } from '../../../utils/timeAgo';
 import auth from '../../../lib/auth';
 import { User } from '../../../types/types';
 import UpdateComment from '../../../routes/UpdateComment';
-import Reply from '../Reply';
+/* import Reply from '../Reply'; */
 
 import styles from './Comment.module.scss';
 import DeleteComment from '../../DeleteComment/DeleteComment';
@@ -48,14 +48,14 @@ const Comment: React.FC<CommentProps> = ({
   commentId,
   score,
 }) => {
-  const [showReplies, setShowReplies] = useState(false);
+ /*  const [showReplies, setShowReplies] = useState(false); */
   const [isUpdateMode, setIsUpdateMode] = useState(false);
 
   const isAuthor = auth.isSignedIn() && user && author === user.username;
 
-  const toggleReplies = () => {
+/*   const toggleReplies = () => {
     setShowReplies((prev) => !prev);
-  };
+  }; */
 
   const handleUpdateClick = () => {
     setIsUpdateMode((prev) => !prev);
@@ -90,7 +90,7 @@ const Comment: React.FC<CommentProps> = ({
           body={body}
           postId={postId}
           commentId={commentId}
-          onSubmit={handleCloseUpdate}
+          closeUpdate={handleCloseUpdate}
         />
       ) : (
         <p className={styles.text}>{body}</p>
@@ -101,24 +101,24 @@ const Comment: React.FC<CommentProps> = ({
         ) : (
           <div></div>
         )}
-        <span className={styles.reply}>reply </span>
+        {/* <span className={styles.reply}>reply </span>
         <span className={styles.icon} onClick={toggleReplies}>
           <HiOutlineChatBubbleLeftRight />
-        </span>
+        </span> */}
       </footer>
-      {showReplies && (
+      {/* {showReplies && (
         <div className={styles.replies}>
           {replies?.map((reply) => (
             <Reply key={reply.id} {...reply} />
           ))}
         </div>
-      )}
+      )} */}
     </div>
   );
 };
 
 export default Comment;
-
+/* 
 const replies: ReplyTypes[] = [
   {
     reply: 'Reply to the first comment.',
@@ -140,3 +140,4 @@ const replies: ReplyTypes[] = [
     parentCommentId: '1',
   },
 ];
+ */
