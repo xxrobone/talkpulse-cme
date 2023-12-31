@@ -50,7 +50,7 @@ const CommentForm = ({ postId, onSubmit }: { postId: string; onSubmit: () => voi
         <div className={styles['textarea-wrapper']}>
           <textarea name='body' id='body' required ref={textRef} placeholder='Write a comment...'></textarea>
         </div>
-        <button type='submit'>Post comment</button>
+        <button type='submit'>Add comment</button>
       </fetcher.Form>
     </div>
   );

@@ -89,7 +89,7 @@
         right: 0;
         width: 0%;
         height: 100%;
-        background: linear-gradient(315deg, #32522e56 0%, #ffffff2c 80%);
+        background: linear-gradient(315deg, #00000056 0%, #2b2b2b2c 80%);
         transition: width 0.25s ease-out, background 0.4s ease-in-out;
       }
 
@@ -99,7 +99,7 @@
 
       &:hover {
         cursor: pointer;
-         background: linear-gradient(315deg, #32522e56 0%, #ffffff2c 80%);
+         background: linear-gradient(315deg, #00000056 0%, #2020202c 80%);
         &::after {
           width: 100%;
           right: auto;
@@ -107,7 +107,7 @@
         }
 
         &:nth-of-type(2) {
-          background: linear-gradient(315deg, #70321d41 0%, #ffffff1a 80%);
+          background: linear-gradient(315deg, #53352b41 0%, #1f1e1e2d 80%);
         }
       }
     }
