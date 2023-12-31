@@ -19,16 +19,17 @@ Backend part of the project: https://github.com/xxrobone/talkpulse_server-cme
 - Auth using JsonWebTokens
 - User email verification and reset password
 
-### Posts (User log-in)
+### Posts (User signed in)
 - User can create, update and delete own posts 
 - "Real time" updates with React Router using loaders (reads) and actions (writes)
 
 ### Comment & Votes
-- Comments and votes if user is signed in
+- User can add comments and votes if user is signed in
 
 ## Features not included
-- ~~Subreddits~~ 
-- ~~Additional features or libraries for realtime like socket.io, websockets or swr~~
+- Additional features
+- Libraries for realtime like socket.io, websockets or swr
+- Subreddits
 
 ### Getting started
 
@@ -42,8 +43,10 @@ Install dependencies:
 ```sh
 npm i
 ```
-### For this project to work you need the backend part or your own backend
-You can find the backend here: https://github.com/xxrobone/talkpulse_server-cme
+### For this project to work you need the a backend part 
+You can find my version of the backend here: https://github.com/xxrobone/talkpulse_server-cme
+
+When connected to a backend or using mockData you can try it out
 
 To Start the project:    
 ```sh
@@ -57,43 +60,88 @@ npm run dev
 - React-router-dom
 - Sass
 
-Just my notes don't mind these...
+<br>
+ 
 
-TODO:
-Verification [x] - working on live site
-Password reset [x] - working on live site
-Votes post & comments [x] - working on live site
+ <br>
 
-USER!
-Password verification [x]
-Password reset [x]
+ ---
 
-IMAGES! 
-Add images [x]
-Update images [x]
-
-Add redirects /close functions to:
-comments:   [x]
-posts:      [x]
-delete:     [x]
-
-Styling fixes update forms [x]
-
-Future features // 
-
-User logout after token expires or refresh token activation []
-
-Future features // 
-SUBREDDITS!
-ADD model:              []
-ADD controllers:        []
-ADD routing:            []
+ 
 
 
-REPLIES!
-ADD model:              []
-ADD controllers:        []
-ADD routing:            []
+<p align="left">
+<a href="https://www.linkedin.com/in/robert-w%C3%A4gar-1b4661139/" target="blank"><img align="center" src="https://github.com/xxrobone/dablog/blob/main/readmeimages/LinkedIN.png" alt="" height="30" /></a>
+<a href="https://github.com/robonexx" target="blank"><img align="center" src="https://github.com/xxrobone/dablog/blob/main/readmeimages/Github.png" alt="" height="30" /></a>
+<a href="https://codepen.io/robertwagar" target="blank"><img align="center" src="https://github.com/xxrobone/dablog/blob/main/readmeimages/Codeopen.png" alt="" height="30" /></a>
+<img align="center" src="socials/Discord.png" alt="" height="30" />
+</p>
 
-USER!
-Profile page /settings page []
+
+
+### Have and Idea you want to bring to life?
+- 💬 Reach out and lets have a chat?
+
+#### You can reach me at:
+
+✉️ robertwagar@gmail.com
+
+<br>
+<br>
+
+ ---
+
+
+## Future features
+
+### User
+
+- [ ] User logout after token expires or refresh token activation
+
+### SUBREDDITS
+
+- [ ] ADD model
+- [ ] ADD controllers
+- [ ] ADD routing
+
+### REPLIES
+
+- [ ] ADD model
+- [ ] ADD controllers
+- [ ] ADD routing
+
+### USER
+
+- [ ] Profile page / settings page
+
+<br> 
+<br>
+<br>
+<br> 
+<br>
+<br>
+
+
+
+#### Just my notes don't mind these...
+
+## My TODO List
+
+- [x] Verification - working on live site
+- [x] Password reset - working on live site
+- [x] Votes post & comments - working on live site
+
+### IMAGES
+
+- [x] Add images
+- [x] Update images
+
+### Add redirects / close functions to:
+
+- [x] comments
+- [x] posts
+- [x] delete
+
+### Styling fixes update forms
+
+- [x] Styling fixes update forms
