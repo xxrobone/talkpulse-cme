@@ -64,7 +64,7 @@ export const action = async (args: ActionFunctionArgs) => {
   }
 };
 
-const UpdatePost: React.FC<UpdatePostLoaderData> = ({ post, user }) => {
+const UpdatePost: React.FC<UpdatePostLoaderData & { onClose: () => void }> = ({ post, user, onClose }) => {
   const error = useActionData() as ActionData;
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
@@ -103,6 +103,12 @@ const UpdatePost: React.FC<UpdatePostLoaderData> = ({ post, user }) => {
       reader.readAsDataURL(files[0]);
     }
   };
+
+  const handleClose = () => {
+    setTimeout(() => {
+      onClose()
+    },1000)
+  }
   
   // Use postData directly in the console.log statement
   console.log(postData);
@@ -175,7 +181,7 @@ const UpdatePost: React.FC<UpdatePostLoaderData> = ({ post, user }) => {
         </div>
         {isAuthor ? (
           <span className={styles.icon}>
-            <button type='submit'>Update post</button>
+            <button type='submit' onClick={handleClose}>Update post</button>
           </span>
         ) : (
           <span className={styles.icon}>

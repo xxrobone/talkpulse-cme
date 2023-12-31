@@ -30,6 +30,8 @@ comments:   []
 posts:      []
 delete:     []
 
+Styling fixes []
+
 Future features // 
 SUBREDDITS!
 ADD model:              []

@@ -32,13 +32,18 @@ export const action = async (args: ActionFunctionArgs) => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const CommentForm = ({ postId }: { postId: string }) => {
+const CommentForm = ({ postId, onSubmit }: { postId: string; onSubmit: () => void }) => {
   const fetcher = useFetcher({ key: 'comment-form-' + postId });
   const textRef = useRef<HTMLTextAreaElement>(null);
 
+  // using the react-router-dom form submit, this is set with a timeout to delay the close commentForm component
   if (fetcher.data && textRef.current) {
     textRef.current.value = '';
+    setTimeout(() => {
+      onSubmit(); 
+    },1000)
   }
+
   return (
     <div className={styles['comment-form']}>
       <fetcher.Form method='post' action={`/posts/${postId}/comments`}>

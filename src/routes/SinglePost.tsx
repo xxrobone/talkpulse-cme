@@ -70,14 +70,22 @@ const SinglePost = () => {
     setAddAComment((prev) => !prev);
   };
 
+  const handleCommentSubmit = () => {
+    setAddAComment(false);
+  };
+
   const handleUpdateClick = () => {
     setIsUpdateMode(true);
+  };
+
+  const handleCloseUpdateForm = () => {
+    setIsUpdateMode(false);
   };
 
   return (
     <>
       {isUpdateMode ? (
-        <UpdatePost post={post} user={user} />
+        <UpdatePost post={post} user={user} onClose={handleCloseUpdateForm} />
       ) : (
         <article className={styles.post}>
           <header className={styles['post-header']}>
@@ -131,7 +139,7 @@ const SinglePost = () => {
               <HiOutlineChatBubbleLeftRight onClick={handleShowComments} />
             </p> */}
           </footer>
-          {addAComment ? <CommentForm postId={post._id} /> : <div></div>}
+          {addAComment ? <CommentForm postId={post._id} onSubmit={handleCommentSubmit} /> : <div></div>}
             {/*  {showComments ? ( */}
             
             <section className={styles['comments-list']}>
