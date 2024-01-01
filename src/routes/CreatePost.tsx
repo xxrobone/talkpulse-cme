@@ -27,7 +27,7 @@ export const action = async (args: ActionFunctionArgs) => {
     if (imageInput) {
       const imageFile = imageInput[0];
 
-      // checking image file type 
+      // checking image file type
       console.log('Type of imageFile:', typeof imageFile);
     } else {
       console.log('No image added to FormData.');
@@ -80,7 +80,7 @@ const CreatePost = () => {
   };
 
   // using a time out to navigate after the post is created
-  // needs fixing to not redirect on error... 
+  // needs fixing to not redirect on error...
   useEffect(() => {
     if (data) {
       const timeoutId = setTimeout(() => {
