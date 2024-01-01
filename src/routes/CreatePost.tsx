@@ -27,7 +27,7 @@ export const action = async (args: ActionFunctionArgs) => {
     if (imageInput) {
       const imageFile = imageInput[0];
 
-      // checking image file type
+      // checking image file type 
       console.log('Type of imageFile:', typeof imageFile);
     } else {
       console.log('No image added to FormData.');
@@ -69,16 +69,18 @@ const CreatePost = () => {
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      // Add preview functionality here
+      // Preview image funcationality
       const reader = new FileReader();
       reader.onloadend = () => {
-        // Use reader.result for the preview
+        // Using the reader.result for the preview of the image
         setImagePreview(reader.result as string);
       };
       reader.readAsDataURL(file);
     }
   };
 
+  // using a time out to navigate after the post is created
+  // needs fixing to not redirect on error... 
   useEffect(() => {
     if (data) {
       const timeoutId = setTimeout(() => {
