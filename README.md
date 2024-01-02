@@ -94,6 +94,10 @@ npm run dev
 
 ## Future features
 
+### Separate Loaders and Actions
+- [ ] Separate Actions
+- [ ] Separate Loaders
+
 ### User
 
 - [ ] User logout after token expires or refresh token activation
