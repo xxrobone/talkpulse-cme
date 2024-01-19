@@ -18,6 +18,7 @@ Backend part of the project: https://github.com/xxrobone/talkpulse_server-cme
 - Sign in
 - Auth using JsonWebTokens
 - User email verification and reset password
+(Verificatio will come from an email hiphopsthlm@gmail.com, using google mail)
 
 ### Posts (User signed in)
 - User can create, update and delete own posts 
