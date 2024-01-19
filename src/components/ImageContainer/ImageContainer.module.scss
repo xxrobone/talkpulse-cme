@@ -5,6 +5,7 @@
     height: auto;
     object-fit: cover;
     object-position: center;
+    overflow: hidden;
 
     @media (min-width: 768px) {
         margin: 2rem auto;

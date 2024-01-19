@@ -3,6 +3,7 @@ import { Post } from '../../types/types';
 import styles from './Post.module.scss';
 import { timeAgo } from '../../utils/timeAgo';
 import PostVotes from '../Votes/PostVotes';
+import ImageContainer from '../ImageContainer/ImageContainer';
 
 const PostItem = ({ post }: { post: Post }) => {
   return (
@@ -28,6 +29,7 @@ const PostItem = ({ post }: { post: Post }) => {
               <h2>{post.title}</h2>
             </Link>
           )}
+           {post.image && <ImageContainer imageData={post.image} />}
           <section>
             <p>{post.body}</p>
           </section>
