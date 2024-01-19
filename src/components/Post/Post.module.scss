@@ -10,6 +10,7 @@
   width: 100%;
   height: fit-content;
   height: 100%;
+  overflow: hidden;
 
   &::after {
     content: '';
