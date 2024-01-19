@@ -2,6 +2,13 @@
 
 ## This is a school project MERN stack assignment
 
+## This project is hosted on two providers
+Backend on Render (node express server)
+Frontend on Render https://talkpulse.onrender.com/ - (images somehow flow over container)
+Frontend on Vercel https://talkpulse-cme.vercel.app/ (images dont flow over container)
+
+About the images its, even after my fix - it is wierd that one hosting provider makes the container flow over but not the other
+
 ### Backend for this project
 Backend part of the project: https://github.com/xxrobone/talkpulse_server-cme
 
