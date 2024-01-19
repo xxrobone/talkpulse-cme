@@ -13,23 +13,24 @@ Backend part of the project: https://github.com/xxrobone/talkpulse_server-cme
 
 ### Reading posts no sign-in needed
 
-### USER
+### USER - AUTH
 - Sign up
 - Sign in
 - Auth using JsonWebTokens
 - User email verification and reset password
 (Verificatio will come from an email hiphopsthlm@gmail.com, using google mail)
 
-### Posts (User signed in)
+### Posts (User signed in) - crud functionality
 - User can create, update and delete own posts 
 - "Real time" updates with React Router using loaders (reads) and actions (writes)
 
-### Comment & Votes
-- User can add comments and votes if user is signed in
+### Comment & Votes (signed in) - crud functionality on comments
+- User can add comments and votes, vote up or down if user is signed in
 
 ## Features not included
 - Additional features
 - Libraries for realtime like socket.io, websockets or swr
+- Used react-router-dom whichs should be somewhat realtime
 - Subreddits
 
 ### Getting started
