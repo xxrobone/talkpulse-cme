@@ -1,6 +1,6 @@
 # TALK PULSE - Frontend (reddit clone)
 
-## This is a school project MERN stack assignment
+## This is a MERN stack project
 
 ## This project is hosted on two providers
 Backend on Render (node express server)
